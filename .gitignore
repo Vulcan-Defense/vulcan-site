@@ -1,6 +1,7 @@
 # Arquivos temporários de trabalho
 temp/
 tmp/
+node_modules/
 *.tmp
 *.bak
 *.log
