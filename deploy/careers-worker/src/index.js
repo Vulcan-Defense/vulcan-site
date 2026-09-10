@@ -83,8 +83,14 @@ export default {
     if (declaredSize > MAX_REQUEST_BYTES) return json(request, { message: "Envio muito grande. O currículo deve ter até 3 MB." }, 413);
 
     const reference = crypto.randomUUID();
+    let data;
     try {
-      const data = await request.formData();
+      data = await request.formData();
+    } catch {
+      return json(request, { message: "Formulário multipart inválido.", reference }, 400);
+    }
+
+    try {
       if (clean(data.get("website"), 200)) return json(request, { ok: true, reference }, 202);
 
       const nome = clean(data.get("nome"), 120);
