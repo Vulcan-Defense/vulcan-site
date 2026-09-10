@@ -1,10 +1,23 @@
 # Cloudflare Transform Rule (Response Header Modification)
 # Use quando o site estiver em GitHub Pages ou outro host que ignora _headers.
 # Dashboard: Rules → Transform Rules → Modify Response Header → Create rule
-# Expression: (http.host eq "vulcandefense.com.br") or (http.host eq "sentinelacibernetica.com.br")
+# Operação dos cabeçalhos abaixo: Set static (não use Add static).
 #
-# Desative CSP Report-Only em Security → Scrape Shield (se habilitado).
-# URLs /cdn-cgi/content/* são páginas do bot fight da Cloudflare — não são corrigíveis no repo.
+# Expressão da regra principal (exclui páginas de desafio geradas pela Cloudflare):
+# (http.host eq "vulcandefense.com.br" and not cf.response.error_type in {"managed_challenge" "iuam" "legacy_challenge" "country_challenge"})
+#
+# Se a mesma zona também servir sentinelacibernetica.com.br, use:
+# ((http.host eq "vulcandefense.com.br" or http.host eq "sentinelacibernetica.com.br") and not cf.response.error_type in {"managed_challenge" "iuam" "legacy_challenge" "country_challenge"})
+#
+# Não inclua 'unsafe-eval'. Uma resposta com default-src 'none', nonce variável,
+# unsafe-eval e challenges.cloudflare.com é uma Challenge Page da Cloudflare,
+# não o HTML da aplicação. Transform Rules não substituem a CSP dessas páginas.
+# Para um pentest autorizado, libere temporariamente apenas os IPs do scanner em
+# Security → WAF → Custom rules → Skip; nunca desative a proteção globalmente.
+#
+# O site usa Scrape Shield/JavaScript Detections, que injeta scripts inline.
+# Por isso 'unsafe-inline' continua necessário até migrar todo JavaScript inline
+# para arquivos externos ou implementar nonces dinâmicos no edge.
 
 Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 X-Content-Type-Options: nosniff
@@ -15,6 +28,14 @@ Cross-Origin-Opener-Policy: same-origin
 Cross-Origin-Resource-Policy: same-site
 Cross-Origin-Embedder-Policy: unsafe-none
 Content-Security-Policy: default-src 'self'; base-uri 'self'; form-action 'self' https://formspree.io; frame-ancestors 'none'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://formspree.io; frame-src 'self'; worker-src 'self' blob:; upgrade-insecure-requests
+
+# IMPORTANTE — correções adicionais observadas no ambiente público:
+# 1. O valor de HSTS deve começar exatamente por "max-age". Se aparecer
+#    "Securitymax-age", corrija o valor no Dashboard.
+# 2. Access-Control-Allow-* não deve ser aplicado a vulcandefense.com.br inteiro.
+#    Restrinja a regra CORS ao hostname/caminho real da API de IA.
+# 3. A regra CSP geral deve ficar antes da regra específica do relatório. Como as
+#    regras executam em ordem, a regra de /relatorio-global.html deve vir depois.
 
 # Para /relatorio-global.html (URI Path equals /relatorio-global.html):
 Content-Security-Policy: default-src 'self'; base-uri 'self'; form-action 'self' https://formspree.io; frame-ancestors 'none'; object-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://formspree.io https://api.ransomware.live https://cdn.jsdelivr.net https://api.allorigins.win https://corsproxy.io https://api.codetabs.com https://cors.eu.org; frame-src 'self' https://app.powerbi.com; worker-src 'self' blob:; upgrade-insecure-requests
