@@ -49,7 +49,12 @@
       + '<a href="' + prefix + 'relatorio-global.html">Relatório global</a>'
       + '<a href="https://academy.vulcandefense.com.br" class="partner-external" target="_blank" rel="noopener noreferrer" title="Cursos e Certificações">Academia Vulcan</a>'
       + '</div></div>'
+      + '<div class="nav-item has-submenu">'
       + '<a href="' + prefix + 'quem-somos.html">Quem somos</a>'
+      + '<div class="submenu">'
+      + '<a href="' + prefix + 'quem-somos.html">Sobre a Vulcan</a>'
+      + '<a href="' + prefix + 'banco-de-talentos.html">Banco de Talentos</a>'
+      + '</div></div>'
       + '<a href="' + prefix + 'contato.html">Contato</a>';
   }
 
@@ -178,6 +183,7 @@
     var fp = navPrefix();
     footerNav.innerHTML = ''
       + '<a href="' + fp + 'politica-privacidade.html">Política de Privacidade</a>'
+      + '<a href="' + fp + 'banco-de-talentos.html">Banco de Talentos</a>'
       + '<a href="' + fp + 'tecnologias.html">Escopos técnicos</a>'
       + '<a href="' + fp + 'gestao-tms-flsys-leanworks.html">Serviços parceiros</a>';
     footerContainer.appendChild(footerNav);

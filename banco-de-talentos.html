@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <link rel="icon" href="assets/favicon.ico">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banco de Talentos | Vulcan Defense</title>
+  <meta name="description" content="Cadastre seu currículo no Banco de Talentos da Vulcan Defense para futuras oportunidades em cybersecurity, tecnologia, dados e operações.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/careers.css">
+  <script src="site.js" defer></script>
+  <script src="assets/careers.js" defer></script>
+</head>
+<body>
+  <div class="grid-overlay"></div>
+  <header>
+    <div class="container header-wrap">
+      <div class="brand">
+        <div class="logo-box"><img src="assets/logo-vulcan.png" alt="Vulcan Defense"></div>
+        <div><h1>VULCAN DEFENSE</h1><p>Cyber Defense Operations</p></div>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <div class="nav-item has-submenu"><a href="quem-somos.html" class="active">Quem somos</a><div class="submenu"><a href="quem-somos.html">Sobre a Vulcan</a><a href="banco-de-talentos.html" class="active">Banco de Talentos</a></div></div>
+        <a href="servicos.html">Serviços</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="careers-page">
+    <section class="careers-hero">
+      <div class="container careers-hero-grid">
+        <div class="careers-intro">
+          <nav class="careers-breadcrumb" aria-label="Caminho da página">
+            <a href="index.html">Início</a><span aria-hidden="true">/</span><a href="quem-somos.html">Quem somos</a><span aria-hidden="true">/</span><span>Banco de Talentos</span>
+          </nav>
+          <div class="section-title-small">Carreiras na Vulcan</div>
+          <h2>Talento técnico merece um lugar onde <span>profundidade conta.</span></h2>
+          <p>Cadastre seu perfil para futuras oportunidades em cybersecurity, engenharia de software, inteligência de ameaças, dados, produto e operações.</p>
+          <div class="careers-signals" aria-label="Diferenciais do cadastro">
+            <span>Cadastro direto</span><span>Dados protegidos</span><span>Perfil revisado pelo time</span>
+          </div>
+        </div>
+
+        <aside class="candidate-dossier" aria-label="Fluxo da candidatura">
+          <div class="dossier-head">
+            <span>Dossiê de candidatura</span>
+            <strong>VD / TALENT</strong>
+          </div>
+          <ol>
+            <li class="is-active"><span>01</span><div><strong>Apresente seu perfil</strong><small>Conte onde sua experiência gera impacto.</small></div></li>
+            <li><span>02</span><div><strong>Envie seu currículo</strong><small>PDF ou DOCX, com até 3 MB.</small></div></li>
+            <li><span>03</span><div><strong>Conexão por aderência</strong><small>Entraremos em contato quando houver compatibilidade.</small></div></li>
+          </ol>
+          <div class="dossier-stamp" aria-hidden="true">FUTURE<br>READY</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section careers-application" id="candidatura">
+      <div class="container application-grid">
+        <div class="application-context">
+          <div class="section-title-small">Seu próximo desafio</div>
+          <h2 class="section-title">Construa defesa, produto e confiança conosco.</h2>
+          <p class="section-text">O Banco de Talentos não representa uma vaga aberta nem garante contratação. Ele nos ajuda a conhecer profissionais com repertório técnico, curiosidade e compromisso com segurança aplicada.</p>
+          <div class="talent-tracks" aria-label="Áreas de interesse">
+            <div><span>01</span><p><strong>Cyber Defense</strong>SOC, SIEM, DFIR, threat intelligence e segurança ofensiva.</p></div>
+            <div><span>02</span><p><strong>Engenharia &amp; IA</strong>Software, integrações, agentes, automação, dados e plataforma.</p></div>
+            <div><span>03</span><p><strong>GRC &amp; Negócios</strong>Governança, risco, privacidade, produto, comercial e operações.</p></div>
+          </div>
+          <p class="privacy-note"><strong>Privacidade por padrão.</strong> Não inclua CPF, RG, dados de saúde ou outras informações sensíveis desnecessárias. Consulte nossa <a href="politica-privacidade.html#privacidade">Política de Privacidade</a>.</p>
+        </div>
+
+        <div class="talent-form-shell">
+          <div class="talent-form-head">
+            <div><span>Candidatura espontânea</span><h3>Conte-nos onde você quer chegar</h3></div>
+            <span class="secure-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V8a5 5 0 0 1 10 0v2m-11 0h12v10H6z"/></svg>Envio protegido</span>
+          </div>
+
+          <form id="talent-form" enctype="multipart/form-data" novalidate>
+            <div class="form-row">
+              <label>Nome completo<span aria-hidden="true">*</span><input class="field" name="nome" type="text" autocomplete="name" maxlength="120" required></label>
+              <label>E-mail<span aria-hidden="true">*</span><input class="field" name="email" type="email" autocomplete="email" maxlength="254" required></label>
+            </div>
+            <div class="form-row">
+              <label>Telefone<input class="field" name="telefone" type="tel" autocomplete="tel" maxlength="30" placeholder="(00) 00000-0000"></label>
+              <label>Localidade<input class="field" name="localidade" type="text" autocomplete="address-level2" maxlength="100" placeholder="Cidade / UF ou remoto"></label>
+            </div>
+            <label>Área de interesse<span aria-hidden="true">*</span>
+              <select class="field" name="area" required>
+                <option value="">Selecione uma área</option>
+                <option>Cyber Defense e SOC</option>
+                <option>Pentest e Segurança Ofensiva</option>
+                <option>Engenharia de Software</option>
+                <option>Dados, Automação e IA</option>
+                <option>GRC, Privacidade e Compliance</option>
+                <option>Produto, Comercial e Operações</option>
+                <option>Estágio e início de carreira</option>
+                <option>Outra área</option>
+              </select>
+            </label>
+            <label>LinkedIn ou portfólio<input class="field" name="linkedin" type="url" inputmode="url" maxlength="300" placeholder="https://"></label>
+            <label>Mensagem ao time<textarea class="field" name="mensagem" maxlength="1500" placeholder="Resuma sua experiência, interesses e o tipo de desafio que procura."></textarea></label>
+
+            <div class="file-field">
+              <span class="file-title">Currículo<span aria-hidden="true">*</span></span>
+              <input id="curriculo" name="curriculo" type="file" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
+              <label class="file-drop" for="curriculo" id="file-drop">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14v5h14v-5"/></svg>
+                <span><strong id="file-name">Selecionar currículo</strong><small id="file-help">Arraste ou escolha um arquivo PDF ou DOCX — máximo 3 MB</small></span>
+                <b>Procurar</b>
+              </label>
+            </div>
+
+            <div class="honey-field" aria-hidden="true"><label>Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+            <label class="consent"><input name="consentimento" type="checkbox" value="accepted" required><span>Autorizo o tratamento dos meus dados para recrutamento e futuras oportunidades, conforme a <a href="politica-privacidade.html#privacidade" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>.<b aria-hidden="true">*</b></span></label>
+
+            <p id="talent-status" class="talent-status" role="status" aria-live="polite"></p>
+            <button class="submit-btn talent-submit" type="submit"><span>Enviar candidatura</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 14-7-5 14-2.7-5.3z"/></svg></button>
+            <p class="form-footnote">Os arquivos são enviados diretamente à equipe responsável em <strong>curriculos@mail.vulcandefense.com.br</strong>.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section careers-expectation">
+      <div class="container expectation-line">
+        <div><span>O que valorizamos</span><h2>Clareza para investigar. Disciplina para entregar. Coragem para aprender.</h2></div>
+        <a class="btn btn-secondary" href="quem-somos.html">Conheça a Vulcan Defense</a>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container">&copy; 2026 Vulcan Defense. Todos os direitos reservados.</div></footer>
+</body>
+</html>

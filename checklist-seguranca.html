@@ -706,24 +706,34 @@
     const items = DATA[fw];
     const tbody = document.getElementById(tbodyId);
     const refUrl = REF_LINKS[fw] || "#";
-    tbody.innerHTML = "";
+    tbody.replaceChildren();
     items.forEach(([ref, desc], i) => {
       const key = String(i);
       const val = (state[fw] && state[fw][key]) || "";
       const tr = document.createElement("tr");
-      const refHtml = `<a href="${refUrl}" target="_blank" rel="noopener noreferrer" class="cl-ref-link" title="${desc.replace(/"/g, "&quot;")}">${ref}</a>`;
-      tr.innerHTML = `
-        <td>${refHtml}</td>
-        <td>${desc}</td>
-        <td>
-          <div class="cl-status-group">
-            <button type="button" class="cl-status-btn ${val === "OK" ? "active-ok" : ""}" data-status="OK">OK</button>
-            <button type="button" class="cl-status-btn ${val === "Não OK" ? "active-nok" : ""}" data-status="Não OK">Não OK</button>
-            <button type="button" class="cl-status-btn ${val === "N/A" ? "active-na" : ""}" data-status="N/A">N/A</button>
-          </div>
-        </td>
-      `;
-      tr.querySelectorAll(".cl-status-btn").forEach(btn => {
+      const refTd = document.createElement("td");
+      const refLink = document.createElement("a");
+      refLink.href = refUrl;
+      refLink.target = "_blank";
+      refLink.rel = "noopener noreferrer";
+      refLink.className = "cl-ref-link";
+      refLink.title = desc;
+      refLink.textContent = ref;
+      refTd.appendChild(refLink);
+
+      const descTd = document.createElement("td");
+      descTd.textContent = desc;
+      const statusTd = document.createElement("td");
+      const group = document.createElement("div");
+      group.className = "cl-status-group";
+      [["OK", "active-ok"], ["Não OK", "active-nok"], ["N/A", "active-na"]].forEach(([status, activeClass]) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "cl-status-btn";
+        btn.dataset.status = status;
+        btn.textContent = status;
+        if (val === status) btn.classList.add(activeClass);
+        group.appendChild(btn);
         btn.addEventListener("click", () => {
           const st = btn.dataset.status;
           state[fw] = state[fw] || {};
@@ -735,6 +745,8 @@
           updateResumo();
         });
       });
+      statusTd.appendChild(group);
+      tr.append(refTd, descTd, statusTd);
       tbody.appendChild(tr);
     });
   }
@@ -786,7 +798,7 @@
     const total = ok + nok + na;
     const svg = document.getElementById(svgId);
     if (!svg) return;
-    svg.innerHTML = "";
+    svg.replaceChildren();
     const cx = 50, cy = 50, r = 42;
     const circumference = 2 * Math.PI * r;
     if (total === 0) {
@@ -846,17 +858,25 @@
       }
     });
     const bar = document.getElementById("bar-resumo");
-    bar.innerHTML = "";
+    bar.replaceChildren();
     fws.forEach(fw => {
       const pct = calcPct(fw);
       const v = pct === null ? 0 : pct;
       const row = document.createElement("div");
       row.className = "cl-bar-row";
-      row.innerHTML = `
-        <span class="cl-bar-name">${names[fw]}</span>
-        <div class="cl-bar-track"><div class="cl-bar-fill" style="width:${v * 100}%"></div></div>
-        <span class="cl-bar-val">${pct === null ? "N/A" : (v * 100).toFixed(0) + "%"}</span>
-      `;
+      const name = document.createElement("span");
+      name.className = "cl-bar-name";
+      name.textContent = names[fw];
+      const track = document.createElement("div");
+      track.className = "cl-bar-track";
+      const fill = document.createElement("div");
+      fill.className = "cl-bar-fill";
+      fill.style.width = (v * 100) + "%";
+      track.appendChild(fill);
+      const value = document.createElement("span");
+      value.className = "cl-bar-val";
+      value.textContent = pct === null ? "N/A" : (v * 100).toFixed(0) + "%";
+      row.append(name, track, value);
       bar.appendChild(row);
     });
   }
@@ -926,113 +946,103 @@
     };
 
     const date = new Date().toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
-    const pctIso = calcPct("iso");
-    const pctLgpd = calcPct("lgpd");
-    const pctPci = calcPct("pci");
-    const pctSoc2 = calcPct("soc2");
-    const pctDevsecops = calcPct("devsecops");
-    const pctFin = calcPct("fin");
-    const pctGovia = calcPct("govia");
-    const pctAll = [pctIso, pctLgpd, pctPci, pctSoc2, pctDevsecops, pctFin, pctGovia];
+    const pctAll = fws.map(fw => calcPct(fw));
     const totalOk = pctAll.filter(p => p !== null).length;
     const aderentes = pctAll.filter(p => p !== null && p >= THRESHOLD).length;
 
-    const css = `
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      .pdf-report { font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; font-size: 13px; line-height: 1.5; padding: 0 20px 32px; width: 100%; max-width: 800px; background: #fff; }
-      .report-cover { text-align: center; padding: 36px 0 40px; border-bottom: 2px solid #1e3a5f; margin-bottom: 28px; page-break-inside: avoid; break-inside: avoid; }
-      .report-cover h1 { font-size: 22px; font-weight: 900; color: #0f172a; margin-bottom: 10px; }
-      .report-cover .sub { font-size: 13px; color: #475569; margin-bottom: 16px; }
-      .report-date { font-size: 11px; color: #64748b; }
-      .exec-summary { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; page-break-inside: avoid; break-inside: avoid; }
-      .exec-summary h2 { font-size: 11px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 12px; }
-      .exec-summary p { color: #334155; font-size: 13px; line-height: 1.65; }
-      .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: 32px; page-break-inside: avoid; break-inside: avoid; }
-      .summary-card { border: 1px solid #e2e8f0; border-radius: 10px; padding: 18px; text-align: center; page-break-inside: avoid; break-inside: avoid; }
-      .summary-card h3 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: #64748b; margin-bottom: 8px; }
-      .summary-card .pct { font-size: 28px; font-weight: 900; color: #0f172a; }
-      .summary-card .pct.ok { color: #166534; }
-      .summary-card .pct.nok { color: #991b1b; }
-      .summary-card .result { font-size: 11px; font-weight: 700; margin-top: 6px; }
-      .summary-card .result.aderente { color: #166534; }
-      .summary-card .result.nao { color: #991b1b; }
-      .section { margin-bottom: 28px; page-break-inside: avoid; break-inside: avoid; }
-      .section h2 { font-size: 14px; font-weight: 800; color: #1e3a5f; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid #cbd5e1; page-break-after: avoid; }
-      .report-table { width: 100%; border-collapse: collapse; font-size: 11px; page-break-inside: auto; }
-      .report-table tr { page-break-inside: avoid; break-inside: avoid; }
-      .report-table th, .report-table td { padding: 8px 12px; text-align: left; border: 1px solid #e2e8f0; }
-      .report-table th { background: #1e3a5f; color: #fff; font-weight: 700; font-size: 9px; text-transform: uppercase; letter-spacing: .1em; }
-      .report-table td:nth-child(1) { font-weight: 600; color: #334155; width: 100px; }
-      .report-table td:nth-child(3) { text-align: center; font-weight: 700; }
-      .report-table .st-ok { color: #166534; }
-      .report-table .st-nok { color: #991b1b; }
-      .report-table .st-na { color: #92400e; }
-      .footer-report { margin-top: 32px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 10px; color: #64748b; text-align: center; page-break-inside: avoid; break-inside: avoid; }
-    `;
+    const css = [
+      "* { box-sizing: border-box; margin: 0; padding: 0; }",
+      ".pdf-report { font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; font-size: 13px; line-height: 1.5; padding: 0 20px 32px; width: 100%; max-width: 800px; background: #fff; }",
+      ".report-cover { text-align: center; padding: 36px 0 40px; border-bottom: 2px solid #1e3a5f; margin-bottom: 28px; page-break-inside: avoid; break-inside: avoid; }",
+      ".report-cover h1 { font-size: 22px; font-weight: 900; color: #0f172a; margin-bottom: 10px; }",
+      ".report-cover .sub { font-size: 13px; color: #475569; margin-bottom: 16px; }",
+      ".report-date { font-size: 11px; color: #64748b; }",
+      ".exec-summary { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; page-break-inside: avoid; break-inside: avoid; }",
+      ".exec-summary h2 { font-size: 11px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 12px; }",
+      ".exec-summary p { color: #334155; font-size: 13px; line-height: 1.65; }",
+      ".summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: 32px; page-break-inside: avoid; break-inside: avoid; }",
+      ".summary-card { border: 1px solid #e2e8f0; border-radius: 10px; padding: 18px; text-align: center; page-break-inside: avoid; break-inside: avoid; }",
+      ".summary-card h3 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: #64748b; margin-bottom: 8px; }",
+      ".summary-card .pct { font-size: 28px; font-weight: 900; color: #0f172a; }",
+      ".summary-card .pct.ok { color: #166534; }",
+      ".summary-card .pct.nok { color: #991b1b; }",
+      ".summary-card .result { font-size: 11px; font-weight: 700; margin-top: 6px; }",
+      ".summary-card .result.aderente { color: #166534; }",
+      ".summary-card .result.nao { color: #991b1b; }",
+      ".section { margin-bottom: 28px; page-break-inside: avoid; break-inside: avoid; }",
+      ".section h2 { font-size: 14px; font-weight: 800; color: #1e3a5f; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid #cbd5e1; page-break-after: avoid; }",
+      ".report-table { width: 100%; border-collapse: collapse; font-size: 11px; page-break-inside: auto; }",
+      ".report-table tr { page-break-inside: avoid; break-inside: avoid; }",
+      ".report-table th, .report-table td { padding: 8px 12px; text-align: left; border: 1px solid #e2e8f0; }",
+      ".report-table th { background: #1e3a5f; color: #fff; font-weight: 700; font-size: 9px; text-transform: uppercase; letter-spacing: .1em; }",
+      ".report-table td:nth-child(1) { font-weight: 600; color: #334155; width: 100px; }",
+      ".report-table td:nth-child(3) { text-align: center; font-weight: 700; }",
+      ".report-table .st-ok { color: #166534; }",
+      ".report-table .st-nok { color: #991b1b; }",
+      ".report-table .st-na { color: #92400e; }",
+      ".footer-report { margin-top: 32px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 10px; color: #64748b; text-align: center; page-break-inside: avoid; break-inside: avoid; }"
+    ].join("\n");
 
-    let html = `<div class="pdf-report"><style>${css}</style>
-    <div class="report-cover">
-      <h1>Relatório Executivo</h1>
-      <p class="sub">Checklist de Segurança da Informação</p>
-      <p class="report-date">${date}</p>
-    </div>
-    <div class="exec-summary">
-      <h2>Sumário Executivo</h2>
-      <p>Este relatório consolida a avaliação de aderência aos frameworks <strong>ISO 27001</strong> (Annex A), <strong>LGPD</strong> (Lei 13.709/2018), <strong>PCI DSS</strong> v4.0, <strong>SOC 2</strong> (Trust Service Criteria), práticas <strong>DevSecOps</strong>, <strong>Finanças TI</strong> (FinOps/ITFM) e <strong>Governança de IA</strong> (Framework AIE, OSIC). O percentual de conformidade é calculado como itens OK dividido por (OK + Não OK), excluindo itens não aplicáveis. Aderência ≥ 80% é considerada <strong>Aderente</strong>. ${totalOk === 0 ? "Nenhum framework foi avaliado ainda." : `${aderentes} de ${totalOk} frameworks avaliados apresentam aderência.`}</p>
-    </div>
-    <div class="summary-grid">
-      <div class="summary-card">
-        <h3>ISO 27001</h3>
-        <div class="pct ${pctIso !== null && pctIso >= THRESHOLD ? "ok" : pctIso !== null ? "nok" : ""}">${pctStr(pctIso)}</div>
-        <div class="result ${pctIso !== null && pctIso >= THRESHOLD ? "aderente" : pctIso !== null ? "nao" : ""}">${resultStr(pctIso)}</div>
-      </div>
-      <div class="summary-card">
-        <h3>LGPD</h3>
-        <div class="pct ${pctLgpd !== null && pctLgpd >= THRESHOLD ? "ok" : pctLgpd !== null ? "nok" : ""}">${pctStr(pctLgpd)}</div>
-        <div class="result ${pctLgpd !== null && pctLgpd >= THRESHOLD ? "aderente" : pctLgpd !== null ? "nao" : ""}">${resultStr(pctLgpd)}</div>
-      </div>
-      <div class="summary-card">
-        <h3>PCI DSS</h3>
-        <div class="pct ${pctPci !== null && pctPci >= THRESHOLD ? "ok" : pctPci !== null ? "nok" : ""}">${pctStr(pctPci)}</div>
-        <div class="result ${pctPci !== null && pctPci >= THRESHOLD ? "aderente" : pctPci !== null ? "nao" : ""}">${resultStr(pctPci)}</div>
-      </div>
-      <div class="summary-card">
-        <h3>SOC 2</h3>
-        <div class="pct ${pctSoc2 !== null && pctSoc2 >= THRESHOLD ? "ok" : pctSoc2 !== null ? "nok" : ""}">${pctStr(pctSoc2)}</div>
-        <div class="result ${pctSoc2 !== null && pctSoc2 >= THRESHOLD ? "aderente" : pctSoc2 !== null ? "nao" : ""}">${resultStr(pctSoc2)}</div>
-      </div>
-      <div class="summary-card">
-        <h3>DevSecOps</h3>
-        <div class="pct ${pctDevsecops !== null && pctDevsecops >= THRESHOLD ? "ok" : pctDevsecops !== null ? "nok" : ""}">${pctStr(pctDevsecops)}</div>
-        <div class="result ${pctDevsecops !== null && pctDevsecops >= THRESHOLD ? "aderente" : pctDevsecops !== null ? "nao" : ""}">${resultStr(pctDevsecops)}</div>
-      </div>
-      <div class="summary-card">
-        <h3>Finanças TI</h3>
-        <div class="pct ${pctFin !== null && pctFin >= THRESHOLD ? "ok" : pctFin !== null ? "nok" : ""}">${pctStr(pctFin)}</div>
-        <div class="result ${pctFin !== null && pctFin >= THRESHOLD ? "aderente" : pctFin !== null ? "nao" : ""}">${resultStr(pctFin)}</div>
-      </div>
-      <div class="summary-card">
-        <h3>Governança IA</h3>
-        <div class="pct ${pctGovia !== null && pctGovia >= THRESHOLD ? "ok" : pctGovia !== null ? "nok" : ""}">${pctStr(pctGovia)}</div>
-        <div class="result ${pctGovia !== null && pctGovia >= THRESHOLD ? "aderente" : pctGovia !== null ? "nao" : ""}">${resultStr(pctGovia)}</div>
-      </div>
-    </div>`;
+    const create = (tag, className, text) => {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (text !== undefined) node.textContent = text;
+      return node;
+    };
 
+    const report = create("div", "pdf-report");
+    const style = create("style");
+    style.textContent = css;
+    report.appendChild(style);
+
+    const cover = create("div", "report-cover");
+    cover.append(create("h1", "", "Relatório Executivo"), create("p", "sub", "Checklist de Segurança da Informação"), create("p", "report-date", date));
+    report.appendChild(cover);
+
+    const summary = create("div", "exec-summary");
+    summary.appendChild(create("h2", "", "Sumário Executivo"));
+    const summaryText = "Este relatório consolida a avaliação de aderência aos frameworks ISO 27001 (Annex A), LGPD (Lei 13.709/2018), PCI DSS v4.0, SOC 2 (Trust Service Criteria), práticas DevSecOps, Finanças TI (FinOps/ITFM) e Governança de IA (Framework AIE, OSIC). O percentual de conformidade é calculado como itens OK dividido por (OK + Não OK), excluindo itens não aplicáveis. Aderência ≥ 80% é considerada Aderente. " + (totalOk === 0 ? "Nenhum framework foi avaliado ainda." : aderentes + " de " + totalOk + " frameworks avaliados apresentam aderência.");
+    summary.appendChild(create("p", "", summaryText));
+    report.appendChild(summary);
+
+    const summaryGrid = create("div", "summary-grid");
     fws.forEach(fw => {
-      const items = DATA[fw];
-      html += `<div class="section"><h2>${names[fw]}</h2><table class="report-table"><thead><tr>`;
-      headers[fw].forEach(h => { html += `<th>${h}</th>`; });
-      html += `</tr></thead><tbody>`;
-      items.forEach(([ref, desc], i) => {
-        const val = (state[fw] && state[fw][String(i)]) || "";
-        const stClass = val === "OK" ? "st-ok" : val === "Não OK" ? "st-nok" : val === "N/A" ? "st-na" : "";
-        html += `<tr><td>${ref}</td><td>${desc}</td><td class="${stClass}">${val || "—"}</td></tr>`;
+      const pct = calcPct(fw);
+      const card = create("div", "summary-card");
+      const pctClass = pct !== null && pct >= THRESHOLD ? "ok" : pct !== null ? "nok" : "";
+      const resultClass = pct !== null && pct >= THRESHOLD ? "aderente" : pct !== null ? "nao" : "";
+      card.append(create("h3", "", names[fw]), create("div", "pct " + pctClass, pctStr(pct)), create("div", "result " + resultClass, resultStr(pct)));
+      summaryGrid.appendChild(card);
+    });
+    report.appendChild(summaryGrid);
+
+    const allowedStatuses = new Set(["OK", "Não OK", "N/A"]);
+    fws.forEach(fw => {
+      const section = create("div", "section");
+      section.appendChild(create("h2", "", names[fw]));
+      const table = create("table", "report-table");
+      const thead = create("thead");
+      const headRow = create("tr");
+      headers[fw].forEach(header => headRow.appendChild(create("th", "", header)));
+      thead.appendChild(headRow);
+      table.appendChild(thead);
+
+      const tbody = create("tbody");
+      DATA[fw].forEach(([ref, desc], i) => {
+        const rawValue = (state[fw] && state[fw][String(i)]) || "";
+        const value = allowedStatuses.has(rawValue) ? rawValue : "";
+        const statusClass = value === "OK" ? "st-ok" : value === "Não OK" ? "st-nok" : value === "N/A" ? "st-na" : "";
+        const row = create("tr");
+        row.append(create("td", "", ref), create("td", "", desc), create("td", statusClass, value || "—"));
+        tbody.appendChild(row);
       });
-      html += `</tbody></table></div>`;
+      table.appendChild(tbody);
+      section.appendChild(table);
+      report.appendChild(section);
     });
 
-    html += `<div class="footer-report">Vulcan Defense · Checklist de Segurança da Informação · ${date} · ISO/IEC 27001:2022, LGPD, PCI DSS v4.0, SOC 2 (AICPA), OWASP DevSecOps, FinOps/ITFM, Governança IA (Framework AIE)</div></div>`;
-    return html;
+    report.appendChild(create("div", "footer-report", "Vulcan Defense · Checklist de Segurança da Informação · " + date + " · ISO/IEC 27001:2022, LGPD, PCI DSS v4.0, SOC 2 (AICPA), OWASP DevSecOps, FinOps/ITFM, Governança IA (Framework AIE)"));
+    return report;
   }
 
   function generatePdf() {
@@ -1041,13 +1051,12 @@
     btn.disabled = true;
     btn.textContent = "Gerando PDF…";
 
-    const content = buildReportContent();
     const wrap = document.createElement("div");
     wrap.style.cssText = "position:fixed;top:0;left:0;margin:0;padding:0;width:210mm;max-width:100%;background:#fff;z-index:99999;overflow:visible;";
-    wrap.innerHTML = content;
+    const el = buildReportContent();
+    wrap.appendChild(el);
 
     document.body.appendChild(wrap);
-    const el = wrap.querySelector(".pdf-report");
 
     const filename = "relatorio-checklist-si-" + new Date().toISOString().slice(0, 10) + ".pdf";
 
@@ -1078,14 +1087,25 @@
   }
 
   function openPrintReport() {
-    const html = "<!DOCTYPE html><html lang=\"pt-BR\"><head><meta charset=\"UTF-8\"><title>Relatório - Checklist SI</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto;color:#1a1a1a;}</style></head><body>" + buildReportContent().replace(/class="pdf-report"/, "class=\"\"") + "</body></html>";
     const w = window.open("", "_blank", "noopener,noreferrer");
-    w.document.write(html);
-    w.document.close();
-    w.focus();
-    w.onload = () => setTimeout(() => w.print(), 300);
-  }
+    if (!w) return;
+    const doc = w.document;
+    doc.documentElement.lang = "pt-BR";
+    const meta = doc.createElement("meta");
+    meta.charset = "UTF-8";
+    doc.head.appendChild(meta);
+    doc.title = "Relatório - Checklist SI";
 
+    const report = buildReportContent();
+    report.classList.remove("pdf-report");
+    doc.body.appendChild(doc.importNode(report, true));
+
+    const printStyle = doc.createElement("style");
+    printStyle.textContent = "body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto;color:#1a1a1a;}";
+    doc.head.appendChild(printStyle);
+    w.focus();
+    setTimeout(() => w.print(), 300);
+  }
   const gateEl = document.getElementById("cl-gate");
   if (gateEl && gateEl.classList.contains("hidden")) {
     init();

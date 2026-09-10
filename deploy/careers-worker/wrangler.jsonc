@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "vulcan-careers",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-10",
+  "routes": [
+    { "pattern": "vulcandefense.com.br/api/careers*", "zone_name": "vulcandefense.com.br" },
+    { "pattern": "www.vulcandefense.com.br/api/careers*", "zone_name": "vulcandefense.com.br" }
+  ],
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "allowed_destination_addresses": ["curriculos@mail.vulcandefense.com.br"],
+      "allowed_sender_addresses": ["carreiras@vulcandefense.com.br"]
+    }
+  ],
+  "observability": { "enabled": true }
+}
