@@ -46,8 +46,8 @@
     .home-cta-inline p{margin:0 0 14px;font-size:15px;color:rgba(255,255,255,.75);line-height:1.6}
     .home-media-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px}
     .home-media-head .btn-row{margin-top:0}
-    .home-media-feature{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);overflow:hidden;border:1px solid rgba(246,200,95,.3);border-radius:22px;background:linear-gradient(145deg,rgba(6,28,55,.72),rgba(0,0,0,.34));box-shadow:0 22px 70px rgba(0,0,0,.25)}
-    .home-media-feature-image{display:block;width:100%;height:100%;min-height:440px;object-fit:cover;background:#020817}
+    .home-media-feature{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(320px,.82fr);overflow:hidden;border:1px solid rgba(246,200,95,.3);border-radius:22px;background:linear-gradient(145deg,rgba(6,28,55,.72),rgba(0,0,0,.34));box-shadow:0 22px 70px rgba(0,0,0,.25)}
+    .home-media-feature-image{display:block;width:100%;height:100%;min-height:430px;object-fit:cover;background:#020817}
     .home-media-feature-body{display:flex;flex-direction:column;justify-content:center;padding:clamp(26px,4vw,48px)}
     .home-media-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
     .home-media-date{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.52)}
@@ -58,18 +58,36 @@
     .home-media-feature h3{font-size:clamp(1.55rem,3vw,2.25rem);font-weight:850;line-height:1.15;color:#fff;margin:18px 0 14px}
     .home-media-feature p{font-size:16px;line-height:1.7;color:rgba(255,255,255,.74);margin:0}
     .home-media-feature-note{margin-top:18px!important;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);font-size:14px!important;color:rgba(255,255,255,.58)!important}
-    .home-related-title{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(103,232,249,.72);margin:30px 0 14px}
-    .home-related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-    .home-related-card{display:flex;flex-direction:column;gap:10px;min-height:190px;padding:20px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(0,0,0,.22)}
-    .home-related-card h3{font-size:16px;line-height:1.4;color:#fff;margin:0}
-    .home-related-card p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.62);margin:0;flex:1}
+    .home-gallery-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:30px 0 14px}
+    .home-gallery-title{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(103,232,249,.72)}
+    .home-gallery-hint{font-size:12px;color:rgba(255,255,255,.44);margin:0}
+    .home-event-gallery{display:flex;gap:14px;overflow-x:auto;padding:2px 2px 14px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:rgba(103,232,249,.35) transparent}
+    .home-event-gallery::-webkit-scrollbar{height:6px}
+    .home-event-gallery::-webkit-scrollbar-thumb{background:rgba(103,232,249,.35);border-radius:999px}
+    .home-event-photo{position:relative;flex:0 0 min(360px,82vw);aspect-ratio:16/10;overflow:hidden;border:1px solid rgba(255,255,255,.11);border-radius:15px;background:#020817;scroll-snap-align:start}
+    .home-event-photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s ease,filter .25s ease}
+    .home-event-photo:hover img{transform:scale(1.025);filter:brightness(1.07)}
+    .home-event-photo span{position:absolute;left:12px;bottom:10px;padding:5px 8px;border-radius:999px;background:rgba(2,8,23,.8);color:rgba(255,255,255,.78);font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;backdrop-filter:blur(6px)}
+    .home-event-news{margin-top:34px;padding-top:28px;border-top:1px solid rgba(255,255,255,.1)}
+    .home-event-news-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:16px}
+    .home-event-news-head h3{margin:0;font-size:clamp(1.25rem,2.3vw,1.65rem);color:#fff}
+    .home-event-news-head p{max-width:560px;margin:0;font-size:13px;line-height:1.55;color:rgba(255,255,255,.52)}
+    .home-event-news-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .home-event-news-card{display:flex;flex-direction:column;min-height:168px;padding:18px;border:1px solid rgba(255,255,255,.1);border-radius:15px;background:rgba(4,21,49,.42);color:inherit;text-decoration:none;transition:transform .2s ease,border-color .2s ease,background .2s ease}
+    .home-event-news-card:hover{transform:translateY(-2px);border-color:rgba(103,232,249,.32);background:rgba(6,31,64,.6)}
+    .home-event-news-source{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#f6d48a}
+    .home-event-news-card h4{margin:12px 0 10px;font-size:15px;line-height:1.4;color:#fff}
+    .home-event-news-card p{margin:0 0 14px;font-size:12px;line-height:1.55;color:rgba(255,255,255,.58)}
+    .home-event-news-action{margin-top:auto;font-size:11px;font-weight:800;color:#7dd3fc}
+    .home-event-news-action::after{content:" ↗"}
     .home-media-link{
       margin-top:8px;font-size:12px;font-weight:700;color:#7dd3fc;text-decoration:none;border-bottom:1px solid rgba(103,232,249,.25);
       padding-bottom:2px;width:fit-content;transition:color .2s,border-color .2s
     }
     .home-media-link:hover{color:#a5f3fc;border-color:rgba(103,232,249,.45)}
     .home-media-link::after{content:" ↗";font-size:10px}
-    @media (max-width:900px){.home-media-feature{grid-template-columns:1fr}.home-media-feature-image{min-height:0;aspect-ratio:1/1}.home-related-grid{grid-template-columns:1fr}}
+    @media (max-width:900px){.home-media-feature{grid-template-columns:1fr}.home-media-feature-image{min-height:0;aspect-ratio:16/10}.home-gallery-head,.home-event-news-head{align-items:flex-start;flex-direction:column;gap:6px}.home-event-news-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:600px){.home-event-news-grid{grid-template-columns:1fr}.home-event-news-card{min-height:0}}
     .home-ot-wrap{margin-top:0}
     .home-ot-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center;margin-top:28px}
     .home-ot-badge{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#f0d48a;padding:6px 12px;border-radius:999px;border:1px solid rgba(246,200,95,.28);background:rgba(246,200,95,.08);margin-bottom:14px}
@@ -191,7 +209,7 @@
       <div class="section-intro" style="margin-bottom:0;">
         <div class="section-title-small">Notícias · Mídia</div>
         <h2 class="section-title">Vulcan no Exercício Guardião Cibernético 8.0</h2>
-        <p class="section-text">Participação no maior treinamento de defesa cibernética do Hemisfério Sul e notícias relacionadas ao evento.</p>
+        <p class="section-text">Participação no maior treinamento de defesa cibernética do Hemisfério Sul, com registros do Hub Rio.</p>
       </div>
       <div class="btn-row">
         <a class="btn btn-secondary" href="quem-somos.html#sala-de-imprensa">Ver sala de imprensa</a>
@@ -199,38 +217,78 @@
     </div>
 
     <article class="home-media-feature">
-      <img class="home-media-feature-image" src="assets/vulcan-guardiao-cibernetico-2026.jpeg" alt="Vulcan Defense no Exercício Guardião Cibernético 2026" width="1200" height="1200" loading="lazy" />
+      <img class="home-media-feature-image" src="assets/egc8-hub-rio-10.jpeg" alt="Participantes do Exercício Guardião Cibernético 8.0 no Hub Rio" width="1280" height="853" loading="lazy" />
       <div class="home-media-feature-body">
         <div class="home-media-meta">
-          <span class="home-media-date">5 set 2026</span>
-          <span class="home-media-tag">Destaque</span>
+          <span class="home-media-date">26 set 2026</span>
+          <span class="home-media-tag">Participação institucional</span>
         </div>
-        <h3>Vulcan Defense é convidada para o Exercício Guardião Cibernético</h3>
-        <p>A Vulcan Defense participará do EGC 8.0, iniciativa coordenada pelo Comando de Defesa Cibernética do Exército Brasileiro que integra organizações públicas, privadas e acadêmicas em cenários de prevenção, detecção e resposta a incidentes.</p>
-        <p class="home-media-feature-note">O exercício está previsto para 21 a 25 de setembro de 2026, com atividades simultâneas em hubs regionais.</p>
+        <h3>Vulcan Defense participa do Guardião Cibernético 8.0</h3>
+        <p>A Vulcan participou do exercício estratégico que simulou ataques contra energia, água, telecomunicações e finanças. No Hub Rio, instituições públicas, privadas e militares trabalharam de forma integrada em cenários de resposta a incidentes.</p>
+        <p class="home-media-feature-note">Realizado de 21 a 25 de setembro, o EGC 8.0 reuniu mais de 1.300 participantes, cerca de 300 organizações e representantes de 14 países.</p>
+        <a class="home-media-link" href="https://www.defesaemfoco.com.br/brasil-simula-ataques-contra-energia-agua-e-telecomunicacoes/" target="_blank" rel="noopener noreferrer">Ler cobertura no Defesa em Foco</a>
       </div>
     </article>
 
-    <div class="home-related-title">Notícias relacionadas ao EGC 8.0</div>
-    <div class="home-related-grid">
-      <article class="home-related-card">
-        <span class="home-media-date">SENAI-SP · 9 jun 2026</span>
-        <h3>São Paulo sediará hub de defesa cibernética da indústria</h3>
-        <p>FIESP e SENAI-SP receberão atividades práticas e simulações voltadas à proteção digital do setor industrial.</p>
-        <a class="home-media-link" href="https://www.sp.senai.br/noticia/sao-paulo-sediara-hub-voltado-a-protecao-digital-da-industria-durante-o-maior-exercicio-de-defesa-cibernetica-do-hemisferio-sul" target="_blank" rel="noopener noreferrer">Ler no SENAI-SP</a>
-      </article>
-      <article class="home-related-card">
-        <span class="home-media-date">Governo do Paraná · 20 mar 2026</span>
-        <h3>Curitiba confirma hub regional do exercício</h3>
-        <p>A programação prevê simulações de incidentes com integração entre Forças Armadas, governo, academia e empresas.</p>
-        <a class="home-media-link" href="https://www.seti.pr.gov.br/Noticia/Parana-lanca-programa-de-capacitacao-digital-para-alunos-de-graduacao-e-pos-graduacao" target="_blank" rel="noopener noreferrer">Ler no Governo do Paraná</a>
-      </article>
-      <article class="home-related-card">
-        <span class="home-media-date">Defesa News · ago 2026</span>
-        <h3>CYBEROS, do IME, será testado no EGC 8.0</h3>
-        <p>O cyber range nacional deverá apoiar simulações de redes críticas, comunicações militares e infraestruturas estratégicas.</p>
-        <a class="home-media-link" href="https://www.defesanews.com.br/2026/08/cyberos-o-cyber-range-nacional-do-ime-para-defesa-de-redes-criticas-comunicacoes-militares-radios-taticos-e-testes-no-exercicio-guardiao-cibernetico-8-0/" target="_blank" rel="noopener noreferrer">Ler na Defesa News</a>
-      </article>
+    <div class="home-gallery-head">
+      <div class="home-gallery-title">Registros do Hub Rio</div>
+      <p class="home-gallery-hint">Deslize para ver todas as fotos · clique para ampliar</p>
+    </div>
+    <div class="home-event-gallery" tabindex="0" aria-label="Galeria de fotos da participação da Vulcan Defense no Guardião Cibernético 8.0">
+      <a class="home-event-photo" href="assets/egc8-hub-rio-01.jpeg" target="_blank" rel="noopener"><img src="assets/egc8-hub-rio-01.jpeg" alt="Sala de operações do Guardião Cibernético 8.0 com participantes e militares" width="1600" height="720" loading="lazy"><span>Operação integrada</span></a>
+      <a class="home-event-photo" href="assets/egc8-hub-rio-02.jpeg" target="_blank" rel="noopener"><img src="assets/egc8-hub-rio-02.jpeg" alt="Visita institucional às equipes do Hub Rio" width="1600" height="720" loading="lazy"><span>Hub Rio</span></a>
+      <a class="home-event-photo" href="assets/egc8-hub-rio-03.jpeg" target="_blank" rel="noopener"><img src="assets/egc8-hub-rio-03.jpeg" alt="Representantes da Vulcan Defense no Guardião Cibernético 8.0" width="1600" height="720" loading="lazy"><span>Vulcan Defense</span></a>
+      <a class="home-event-photo" href="assets/egc8-hub-rio-04.jpeg" target="_blank" rel="noopener"><img src="assets/egc8-hub-rio-04.jpeg" alt="Equipe técnica em conversa com representantes do Exército Brasileiro" width="1600" height="720" loading="lazy"><span>Cooperação técnica</span></a>
+      <a class="home-event-photo" href="assets/egc8-hub-rio-05.jpeg" target="_blank" rel="noopener"><img src="assets/egc8-hub-rio-05.jpeg" alt="Interação entre participantes civis e militares durante o exercício" width="1600" height="720" loading="lazy"><span>Integração</span></a>
+      <a class="home-event-photo" href="assets/egc8-hub-rio-06.jpeg" target="_blank" rel="noopener"><img src="assets/egc8-hub-rio-06.jpeg" alt="Encontro de participantes e instituições no Hub Rio" width="1600" height="720" loading="lazy"><span>Ecossistema</span></a>
+      <a class="home-event-photo" href="assets/egc8-hub-rio-07.jpeg" target="_blank" rel="noopener"><img src="assets/egc8-hub-rio-07.jpeg" alt="Painel de organizações participantes com a marca Vulcan Defense" width="720" height="1280" loading="lazy"><span>Organizações</span></a>
+      <a class="home-event-photo" href="assets/egc8-hub-rio-08.jpeg" target="_blank" rel="noopener"><img src="assets/egc8-hub-rio-08.jpeg" alt="Banner do Exercício Guardião Cibernético 8.0 no Hub Rio" width="720" height="1280" loading="lazy"><span>EGC 8.0</span></a>
+      <a class="home-event-photo" href="assets/egc8-hub-rio-09.jpeg" target="_blank" rel="noopener"><img src="assets/egc8-hub-rio-09.jpeg" alt="Representante da Vulcan Defense com certificado de participação" width="1600" height="720" loading="lazy"><span>Participação</span></a>
+    </div>
+
+    <div class="home-event-news" aria-labelledby="event-news-title">
+      <div class="home-event-news-head">
+        <h3 id="event-news-title">Notícias sobre o evento</h3>
+        <p>Coberturas oficiais e setoriais para conhecer os cenários, as instituições participantes e o alcance nacional do exercício.</p>
+      </div>
+      <div class="home-event-news-grid">
+        <a class="home-event-news-card" href="https://www.gov.br/defesa/pt-br/centrais-de-conteudo/noticias/exercicio-guardiao-cibernetico-8-0-reune-cerca-de-1-300-participantes-em-brasilia/" target="_blank" rel="noopener noreferrer">
+          <span class="home-event-news-source">Ministério da Defesa</span>
+          <h4>Guardião Cibernético 8.0 reúne participantes de 14 países</h4>
+          <p>Visão geral do exercício, dos setores estratégicos envolvidos e da integração entre governo, empresas e academia.</p>
+          <span class="home-event-news-action">Ler notícia</span>
+        </a>
+        <a class="home-event-news-card" href="https://www.defesaemfoco.com.br/brasil-simula-ataques-contra-energia-agua-e-telecomunicacoes/" target="_blank" rel="noopener noreferrer">
+          <span class="home-event-news-source">Defesa em Foco</span>
+          <h4>Brasil simula ataques contra energia, água e telecomunicações</h4>
+          <p>Cobertura dos cenários de crise e da proteção de serviços essenciais durante o treinamento.</p>
+          <span class="home-event-news-action">Ler notícia</span>
+        </a>
+        <a class="home-event-news-card" href="https://www.gov.br/cnen/pt-br/assunto/ultimas-noticias/cnen-participa-do-exercicio-guardiao-cibernetico-8.0" target="_blank" rel="noopener noreferrer">
+          <span class="home-event-news-source">CNEN</span>
+          <h4>Setor nuclear testa prevenção, resposta e recuperação</h4>
+          <p>A participação do setor nuclear em cenários de ataques complexos contra infraestruturas críticas.</p>
+          <span class="home-event-news-action">Ler notícia</span>
+        </a>
+        <a class="home-event-news-card" href="https://www.gov.br/ana/pt-br/assuntos/noticias-e-eventos/noticias-periodo-eleitoral-2026/ana-participa-do-exercicio-guardiao-cibernetico-8-0-com-foco-na-protecao-do-espaco-cibernetico-brasileiro-e-infraestruturas-criticas" target="_blank" rel="noopener noreferrer">
+          <span class="home-event-news-source">Agência Nacional de Águas</span>
+          <h4>Proteção cibernética de recursos hídricos e saneamento</h4>
+          <p>A atuação da ANA no treinamento voltado à segurança do espaço cibernético e dos serviços críticos.</p>
+          <span class="home-event-news-action">Ler notícia</span>
+        </a>
+        <a class="home-event-news-card" href="https://www.gov.br/censipam/pt-br/central-de-conteudos/noticias/censipam-participa-da-abertura-do-exercicio-guardiao-cibernetico-8.0" target="_blank" rel="noopener noreferrer">
+          <span class="home-event-news-source">Censipam</span>
+          <h4>Cooperação nacional na abertura do exercício</h4>
+          <p>Destaque para a presença de órgãos públicos, Forças Armadas, iniciativa privada e instituições de ensino.</p>
+          <span class="home-event-news-action">Ler notícia</span>
+        </a>
+        <a class="home-event-news-card" href="https://www.marinha.mil.br/secnsnq/node/274" target="_blank" rel="noopener noreferrer">
+          <span class="home-event-news-source">Marinha do Brasil</span>
+          <h4>Cenário marítimo inédito integra o EGC 8.0</h4>
+          <p>Simulação testa a resposta a um incidente cibernético envolvendo transporte naval de material nuclear.</p>
+          <span class="home-event-news-action">Ler notícia</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
