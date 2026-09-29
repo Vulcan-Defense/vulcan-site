@@ -37,7 +37,7 @@
           <div class="sector-actions"><a class="btn btn-primary" href="#setores">Explorar setores</a><a class="btn btn-secondary" href="contato.html?servico=ambientes-criticos">Falar com um especialista</a></div>
         </div>
         <div class="sector-snapshot" aria-label="Capacidade de atendimento Vulcan Defense">
-          <div class="sector-stat"><strong>+3.200</strong><span>horas de especialistas</span></div>
+          <div class="sector-stat"><strong>Conte com</strong><span>horas de especialistas</span></div>
           <div class="sector-stat"><strong>24×7</strong><span>operação SOC e MDR</span></div>
           <div class="sector-stat"><strong>TI + OT</strong><span>cobertura integrada</span></div>
           <div class="sector-stat"><strong>Alta complexidade</strong><span>projetos sob medida</span></div>
@@ -53,10 +53,22 @@
       </div>
     </div>
 
+    <div class="sector-assurance" aria-label="Referenciais de segurança e conformidade">
+      <div class="container sector-assurance-grid">
+        <p>Arquitetura, operação e governança alinhadas aos principais referenciais</p>
+        <div class="sector-standards"><span>NIST</span><span>CIS Controls</span><span>ISO 27001</span><span>IEC 62443</span><span>ANPD</span></div>
+      </div>
+    </div>
+
     <section class="sector-section" id="setores">
       <div class="container">
         <div class="sector-heading"><h2>Proteção moldada pela operação</h2><p>Cada setor combina ativos, riscos e restrições diferentes. Selecione uma área para ver os focos de proteção recomendados.</p></div>
-        <div class="sector-explorer">
+        <div class="sector-audience-grid" aria-label="Prioridades dos setores estratégicos">
+          <article class="sector-audience sector-audience--public"><span>Setor público</span><h3>Soberania e continuidade dos serviços</h3><p>Proteção de dados, serviços ao cidadão, órgãos e infraestruturas governamentais.</p></article>
+          <article class="sector-audience sector-audience--energy"><span>Energia</span><h3>Disponibilidade e segurança operacional</h3><p>Visibilidade integrada para geração, transmissão, distribuição e automação.</p></article>
+          <article class="sector-audience sector-audience--industry"><span>Indústria</span><h3>Produção resiliente e conectada</h3><p>Defesa de plantas, engenharia, propriedade intelectual e cadeia de fornecedores.</p></article>
+        </div>
+        <div class="sector-explorer" data-sector-explorer data-current="ferroviario">
           <div class="sector-tabs" role="tablist" aria-label="Setores de atuação">
             <button class="sector-tab is-active" type="button" role="tab" aria-selected="true" data-sector="ferroviario">Ferroviário</button>
             <button class="sector-tab" type="button" role="tab" aria-selected="false" data-sector="energia">Energia</button>
@@ -64,7 +76,7 @@
             <button class="sector-tab" type="button" role="tab" aria-selected="false" data-sector="infraestrutura">Infraestrutura</button>
             <button class="sector-tab" type="button" role="tab" aria-selected="false" data-sector="publico">Setor público</button>
           </div>
-          <div class="sector-detail" data-sector-detail data-code="01" role="tabpanel">
+          <div class="sector-detail" data-sector-detail data-current="ferroviario" data-code="01" role="tabpanel">
             <div class="sector-detail-copy"><span class="sector-detail-kicker" data-sector-kicker>Mobilidade e transporte</span><h3 data-sector-title>Ferroviário</h3><p data-sector-text>Proteção de centros de controle, sinalização, telecomunicações, estações e ativos embarcados, com monitoramento que respeita disponibilidade e segurança operacional.</p></div>
             <div class="sector-focus"><b>Focos da solução</b><ul data-sector-focus><li>SOC e MDR com contexto operacional</li><li>Segmentação entre TI, OCC e campo</li><li>Resposta coordenada sem interromper a operação</li></ul></div>
           </div>

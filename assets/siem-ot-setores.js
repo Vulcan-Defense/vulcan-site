@@ -31,12 +31,15 @@
 
   var tabs = document.querySelectorAll("[data-sector]");
   var detail = document.querySelector("[data-sector-detail]");
+  var explorer = document.querySelector("[data-sector-explorer]");
   if (!tabs.length || !detail) return;
 
   function render(key) {
     var item = sectors[key];
     if (!item) return;
     detail.dataset.code = item.code;
+    detail.dataset.current = key;
+    if (explorer) explorer.dataset.current = key;
     detail.querySelector("[data-sector-kicker]").textContent = item.kicker;
     detail.querySelector("[data-sector-title]").textContent = item.title;
     detail.querySelector("[data-sector-text]").textContent = item.text;
