@@ -3,8 +3,8 @@
 # Dashboard: Rules → Transform Rules → Modify Response Header → Create rule
 # Operação dos cabeçalhos abaixo: Set static (não use Add static).
 #
-# Expressão da regra principal (exclui páginas de desafio geradas pela Cloudflare):
-# (http.host eq "vulcandefense.com.br" and not cf.response.error_type in {"managed_challenge" "iuam" "legacy_challenge" "country_challenge"})
+# Expressão da regra principal (inclui o portfólio e exclui páginas de desafio):
+# ((http.host eq "vulcandefense.com.br" or http.host eq "www.vulcandefense.com.br" or http.host eq "portifolio.vulcandefense.com.br") and not cf.response.error_type in {"managed_challenge" "iuam" "legacy_challenge" "country_challenge"})
 #
 # Se a mesma zona também servir sentinelacibernetica.com.br, use:
 # ((http.host eq "vulcandefense.com.br" or http.host eq "sentinelacibernetica.com.br") and not cf.response.error_type in {"managed_challenge" "iuam" "legacy_challenge" "country_challenge"})
@@ -28,6 +28,12 @@ Cross-Origin-Opener-Policy: same-origin
 Cross-Origin-Resource-Policy: same-site
 Cross-Origin-Embedder-Policy: unsafe-none
 Content-Security-Policy: default-src 'self'; base-uri 'self'; form-action 'self' https://formspree.io; frame-ancestors 'none'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://formspree.io; frame-src 'self'; worker-src 'self' blob:; upgrade-insecure-requests
+
+# Remova regras antigas que também definam Content-Security-Policy. Múltiplos
+# cabeçalhos CSP são combinados pelo navegador e a política mais restritiva vence.
+# No domínio portifolio, não use o valor quebrado abaixo:
+# style-src 'self' img-src 'self' data:
+# Remova também os cabeçalhos obsoletos X-XSS-Protection, Expect-CT e Report-To.
 
 # IMPORTANTE — correções adicionais observadas no ambiente público:
 # 1. O valor de HSTS deve começar exatamente por "max-age". Se aparecer

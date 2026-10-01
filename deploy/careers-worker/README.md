@@ -10,7 +10,7 @@ Este Worker recebe o formulário de `banco-de-talentos.html`, valida os campos e
 4. Autentique o Wrangler e publique com `npm run deploy`.
 5. Envie uma candidatura de teste pela página e confirme recebimento, anexo e resposta automática ao endereço informado.
 
-O formulário usa a rota de mesmo domínio `/api/careers`; não é necessário expor uma origem CORS ampla. O código aceita apenas os dois domínios oficiais e ambientes locais de desenvolvimento.
+O formulário usa a rota de mesmo domínio `/api/careers`; não é necessário expor uma origem CORS ampla. O código aceita o domínio principal, `www`, `portifolio.vulcandefense.com.br` e os ambientes locais de desenvolvimento.
 
 ## Segurança operacional
 

@@ -5,7 +5,8 @@
   "compatibility_date": "2026-09-10",
   "routes": [
     { "pattern": "vulcandefense.com.br/api/careers*", "zone_name": "vulcandefense.com.br" },
-    { "pattern": "www.vulcandefense.com.br/api/careers*", "zone_name": "vulcandefense.com.br" }
+    { "pattern": "www.vulcandefense.com.br/api/careers*", "zone_name": "vulcandefense.com.br" },
+    { "pattern": "portifolio.vulcandefense.com.br/api/careers*", "zone_name": "vulcandefense.com.br" }
   ],
   "send_email": [
     {

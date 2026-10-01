@@ -5,6 +5,7 @@ const MAX_REQUEST_BYTES = 4.2 * 1024 * 1024;
 const ALLOWED_ORIGINS = new Set([
   "https://vulcandefense.com.br",
   "https://www.vulcandefense.com.br",
+  "https://portifolio.vulcandefense.com.br",
   "http://localhost:8000",
   "http://127.0.0.1:8000"
 ]);
@@ -51,16 +52,6 @@ function escapeHtml(value) {
 function safeFilename(name) {
   const normalized = String(name || "curriculo").normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
   return normalized.replace(/[^a-zA-Z0-9._-]/g, "-").replace(/-+/g, "-").slice(-120);
-}
-
-function toBase64(arrayBuffer) {
-  const bytes = new Uint8Array(arrayBuffer);
-  let binary = "";
-  const chunkSize = 0x8000;
-  for (let index = 0; index < bytes.length; index += chunkSize) {
-    binary += String.fromCharCode(...bytes.subarray(index, index + chunkSize));
-  }
-  return btoa(binary);
 }
 
 function validSignature(bytes, extension) {
@@ -140,7 +131,7 @@ export default {
           filename: safeFilename(curriculo.name),
           type: extension === "pdf" ? "application/pdf" : "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
           disposition: "attachment",
-          content: toBase64(fileBuffer)
+          content: fileBuffer
         }]
       });
 
