@@ -25,6 +25,17 @@
       box-shadow: 0 8px 32px rgba(0,0,0,.3);
     }
     .port-menu-label { font-size: 12px; text-transform: uppercase; letter-spacing: .15em; color: rgba(255,255,255,.5); }
+    .port-language-picker { display: grid; gap: 7px; min-width: 174px; }
+    .port-language-picker label { font-size: 12px; text-transform: uppercase; letter-spacing: .15em; color: rgba(255,255,255,.5); }
+    .port-language-picker select {
+      width: 100%; appearance: none; border: 1px solid rgba(103,232,249,.35); border-radius: 10px;
+      background: rgba(0,0,0,.3); color: #dffaff; padding: 11px 36px 11px 13px; font: 700 13px 'Inter', sans-serif;
+      cursor: pointer; outline: none;
+      background-image: linear-gradient(45deg, transparent 50%, #67e8f9 50%), linear-gradient(135deg, #67e8f9 50%, transparent 50%);
+      background-position: calc(100% - 17px) 50%, calc(100% - 12px) 50%; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat;
+    }
+    .port-language-picker select:focus { border-color: #67e8f9; box-shadow: 0 0 0 3px rgba(34,211,238,.14); }
+    .port-language-picker option { background: #06152b; color: #fff; }
     .port-sla-switch { display: flex; gap: 8px; flex-wrap: wrap; }
     .port-sla-switch button {
       padding: 12px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,.2);
@@ -113,7 +124,7 @@
     .port-pacote strong { font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: rgba(103,232,249,.95); }
     .port-pacote .valor { font-weight: 800; color: #fff; font-size: 16px; overflow-wrap: break-word; }
     .port-pacote .obs { font-size: 11px; color: rgba(255,255,255,.5); }
-    @media (max-width: 768px) { .port-pacotes { grid-template-columns: 1fr; } .port-menu-bar { flex-direction: column; } }
+    @media (max-width: 768px) { .port-pacotes { grid-template-columns: 1fr; } .port-menu-bar { flex-direction: column; } .port-language-picker { width: min(100%, 290px); } }
     @media (max-width: 640px) { .port-pacotes { grid-template-columns: 1fr; } }
     .port-btn-wrap { text-align: center; padding: 32px 0; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
     .port-btn-wrap .btn { padding: 16px 32px; font-size: 15px; }
@@ -242,6 +253,15 @@
           <button type="button" data-sla="6h" aria-pressed="false">Professional <span class="sla-time">SLA 6h</span></button>
           <button type="button" data-sla="1h" aria-pressed="false">Enterprise <span class="sla-time">SLA 1h</span></button>
         </div>
+      </div>
+      <div class="port-sla-divider" aria-hidden="true"></div>
+      <div class="port-language-picker">
+        <label for="portfolio-language">Idioma do material</label>
+        <select id="portfolio-language" aria-label="Selecionar idioma do material">
+          <option value="pt" selected>Português</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
       </div>
       <div class="port-sla-divider" aria-hidden="true"></div>
       <div class="port-suporte-24">Suporte 24/7 para todos os pacotes</div>
@@ -503,6 +523,16 @@
 <script src="assets/html3pdf.bundle.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function(){
+  var languageSelect = document.getElementById("portfolio-language");
+  if (languageSelect) {
+    languageSelect.addEventListener("change", function () {
+      var targetLanguage = languageSelect.value;
+      if (targetLanguage === "pt") return;
+      var translatedUrl = "https://translate.google.com/translate?sl=pt&tl=" + targetLanguage + "&u=" + encodeURIComponent(window.location.href);
+      window.location.assign(translatedUrl);
+    });
+  }
+
   var btn = document.getElementById("btn-pdf");
   if (btn) {
     btn.addEventListener("click", function(){
