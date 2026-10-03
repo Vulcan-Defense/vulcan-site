@@ -194,4 +194,10 @@
       + '<a href="' + fp + 'gestao-tms-flsys-leanworks.html">Serviços parceiros</a>';
     footerContainer.appendChild(footerNav);
   }
+  if (document.querySelector(".commercial-page")) {
+    var currencyScript = document.createElement("script");
+    currencyScript.src = "assets/currency-switcher.js";
+    currencyScript.defer = true;
+    document.head.appendChild(currencyScript);
+  }
 })();
