@@ -199,5 +199,20 @@
     currencyScript.src = "assets/currency-switcher.js";
     currencyScript.defer = true;
     document.head.appendChild(currencyScript);
+
+    var commercialWrap = document.querySelector(".commercial-wrap");
+    if (commercialWrap && !commercialWrap.querySelector(".commercial-services")) {
+      var language = document.documentElement.lang || "pt-BR";
+      var services = document.createElement("section");
+      services.className = "commercial-section commercial-services";
+      if (language.indexOf("es") === 0) {
+        services.innerHTML = '<h2>Servicios especializados</h2><div class="commercial-grid"><article class="info-card"><h3>Desarrollo de software seguro</h3><p>Diseño y desarrollo de aplicaciones, APIs e integraciones con requisitos de seguridad desde la arquitectura.</p><ul><li>Arquitectura, UX y desarrollo web, mobile y backend.</li><li>DevSecOps, revisión de código, SAST/DAST y pruebas de seguridad.</li><li>Integración con identidad, nube, observabilidad y sistemas existentes.</li></ul></article><article class="info-card"><h3>Investigación de incidentes</h3><p>Investigación técnica para determinar alcance, impacto y línea de tiempo de un incidente.</p><ul><li>Preservación de evidencias, análisis de logs, endpoints y cloud.</li><li>Identificación de compromiso, causa raíz y activos afectados.</li><li>Informe técnico, recomendaciones de contención y plan de remediación.</li></ul></article></div><div class="commercial-cta"><a class="btn btn-primary" href="contato.html?servico=desarrollo-e-investigacion">Solicitar propuesta</a></div>';
+      } else if (language.indexOf("en") === 0) {
+        services.innerHTML = '<h2>Specialized services</h2><div class="commercial-grid"><article class="info-card"><h3>Secure software development</h3><p>Design and delivery of applications, APIs and integrations with security built into the architecture.</p><ul><li>Architecture, UX and web, mobile and backend development.</li><li>DevSecOps, code review, SAST/DAST and security testing.</li><li>Identity, cloud, observability and existing-system integrations.</li></ul></article><article class="info-card"><h3>Incident investigation</h3><p>Technical investigation to determine an incident’s scope, impact and timeline.</p><ul><li>Evidence preservation and analysis of logs, endpoints and cloud.</li><li>Identification of compromise, root cause and affected assets.</li><li>Technical report, containment guidance and remediation plan.</li></ul></article></div><div class="commercial-cta"><a class="btn btn-primary" href="contato.html?servico=development-and-investigation">Request a proposal</a></div>';
+      } else {
+        services.innerHTML = '<h2>Serviços especializados</h2><div class="commercial-grid"><article class="info-card"><h3>Desenvolvimento de software seguro</h3><p>Concepção e entrega de aplicações, APIs e integrações com segurança incorporada desde a arquitetura.</p><ul><li>Arquitetura, UX e desenvolvimento web, mobile e backend.</li><li>DevSecOps, revisão de código, SAST/DAST e testes de segurança.</li><li>Integração com identidade, nuvem, observabilidade e sistemas existentes.</li></ul></article><article class="info-card"><h3>Investigação de incidentes</h3><p>Investigação técnica para determinar escopo, impacto e linha do tempo de um incidente.</p><ul><li>Preservação de evidências e análise de logs, endpoints e cloud.</li><li>Identificação de comprometimento, causa raiz e ativos afetados.</li><li>Relatório técnico, recomendações de contenção e plano de remediação.</li></ul></article></div><div class="commercial-cta"><a class="btn btn-primary" href="contato.html?servico=desenvolvimento-e-investigacao">Solicitar proposta</a></div>';
+      }
+      commercialWrap.appendChild(services);
+    }
   }
 })();
