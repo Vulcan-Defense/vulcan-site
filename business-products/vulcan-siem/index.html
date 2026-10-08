@@ -88,11 +88,15 @@
             </div>
             <div class="dl-checksum">
               <span class="dl-checksum-label">SHA-512</span>
-              <code>ce1bac4b7927c2f3a7171c4978689e2f502093ad281d75cd240643105cfb59e7ef68f44c84fbc8cab8103504de32c1d26f2e0cfd79ff6e4599698a9941c7c0f2</code>
+              <code>166fcd410b7124aed1b6d5482930a5229aa73a625d714cedb7af976561596c17bb0ac8afb9244b8a5c3d04e723f6987192ce1782c7b5582680aca6ab02687acb</code>
+            </div>
+            <div class="dl-checksum">
+              <span class="dl-checksum-label">SHA-256</span>
+              <code>96c5bc6e781605fe25f7ae18bacaf0630bee55a367492eb81a26513b63ab9dc9</code>
             </div>
             <div class="dl-card-actions">
               <a class="btn btn-primary" href="../../downloads/vulcan-agent-windows.msi" download>Baixar MSI</a>
-              <button type="button" class="dl-btn-ghost" data-copy-sha="ce1bac4b7927c2f3a7171c4978689e2f502093ad281d75cd240643105cfb59e7ef68f44c84fbc8cab8103504de32c1d26f2e0cfd79ff6e4599698a9941c7c0f2">Copiar hash</button>
+              <button type="button" class="dl-btn-ghost" data-copy-sha="96c5bc6e781605fe25f7ae18bacaf0630bee55a367492eb81a26513b63ab9dc9">Copiar SHA-256</button>
             </div>
           </article>
 
@@ -158,11 +162,12 @@
         <div class="dl-steps">
           <article class="dl-step">
             <h3>Validar integridade</h3>
-            <p>Confira o SHA-512 do arquivo baixado antes de instalar em produção.</p>
+            <p>Confira o SHA-256 ou SHA-512 do arquivo baixado antes de instalar em produção.</p>
             <div class="dl-code"><pre># Linux
 sha512sum vulcan-agent-linux-amd64.deb
 
 # Windows (PowerShell)
+Get-FileHash .\vulcan-agent-windows.msi -Algorithm SHA256
 Get-FileHash .\vulcan-agent-windows.msi -Algorithm SHA512</pre></div>
           </article>
           <article class="dl-step">
