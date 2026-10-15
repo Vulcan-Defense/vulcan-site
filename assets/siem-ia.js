@@ -25,7 +25,7 @@
     var row = document.createElement("div");
     row.className = "ai-message " + role;
     var avatar = document.createElement("span");
-    avatar.textContent = role === "user" ? "EU" : "AI";
+    avatar.textContent = role === "user" ? "EU" : "SI";
     var body = document.createElement("div");
     var paragraph = document.createElement("p");
     paragraph.textContent = text;
@@ -115,7 +115,7 @@
   async function localFileAnswer(file, question) {
     if (/\.html?$/i.test(file.name)) return analyzeHtml(file, question);
     return {
-      answer: "O PDF “" + file.name + "” foi anexado e validado. A leitura completa de PDFs será realizada quando o endpoint seguro de IA estiver conectado. A chave da API e o processamento do documento permanecem no servidor.",
+      answer: "O PDF “" + file.name + "” foi anexado e validado. A leitura completa de PDFs será realizada quando o endpoint seguro de Superinteligência estiver conectado. A chave da API e o processamento do documento permanecem no servidor.",
       sources: ["PDF anexado", "Endpoint seguro necessário", "Nenhum dado foi enviado"]
     };
   }

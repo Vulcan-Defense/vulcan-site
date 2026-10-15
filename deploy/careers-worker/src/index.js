@@ -13,7 +13,7 @@ const ALLOWED_AREAS = new Set([
   "Cyber Defense e SOC",
   "Pentest e Segurança Ofensiva",
   "Engenharia de Software",
-  "Dados, Automação e IA",
+  "Dados, Automação e Superinteligência",
   "GRC, Privacidade e Compliance",
   "Produto, Comercial e Operações",
   "Estágio e início de carreira",
