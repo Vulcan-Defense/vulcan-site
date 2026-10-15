@@ -29,7 +29,7 @@
 .ai-search-form button{grid-column:2;grid-row:1;align-self:center}
 @media(max-width:700px){.ai-search-form{grid-template-columns:minmax(0,1fr) 52px}.ai-search-form textarea{width:100%}}
 
-/* Layout final: chat de Superinteligência em coluna única, amplo e centralizado */
+/* Layout final: chat de IA & Superinteligência em coluna única, amplo e centralizado */
 .ai-assistant-layout{display:block;width:100%;max-width:1040px;margin-left:auto;margin-right:auto}
 .ai-chat{display:flex;flex-direction:column;width:100%;max-width:1040px;min-height:780px;margin-left:auto;margin-right:auto}
 .ai-messages{flex:1 1 auto;width:100%;height:500px;min-height:500px;box-sizing:border-box}

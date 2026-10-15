@@ -39,7 +39,7 @@ Content-Security-Policy: default-src 'self'; base-uri 'self'; form-action 'self'
 # 1. O valor de HSTS deve começar exatamente por "max-age". Se aparecer
 #    "Securitymax-age", corrija o valor no Dashboard.
 # 2. Access-Control-Allow-* não deve ser aplicado a vulcandefense.com.br inteiro.
-#    Restrinja a regra CORS ao hostname/caminho real da API de Superinteligência.
+#    Restrinja a regra CORS ao hostname/caminho real da API de IA & Superinteligência.
 # 3. A regra CSP geral deve ficar antes da regra específica do relatório. Como as
 #    regras executam em ordem, a regra de /relatorio-global.html deve vir depois.
 
