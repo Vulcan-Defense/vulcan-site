@@ -68,6 +68,14 @@
     .home-event-photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s ease,filter .25s ease}
     .home-event-photo:hover img{transform:scale(1.025);filter:brightness(1.07)}
     .home-event-photo span{position:absolute;left:12px;bottom:10px;padding:5px 8px;border-radius:999px;background:rgba(2,8,23,.8);color:rgba(255,255,255,.78);font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;backdrop-filter:blur(6px)}
+    .home-gallery-lightbox{position:fixed;z-index:1000;inset:0;display:grid;place-items:center;padding:24px;background:rgba(1,6,18,.9);backdrop-filter:blur(10px)}
+    .home-gallery-lightbox[hidden]{display:none}
+    .home-gallery-lightbox figure{position:relative;display:grid;justify-items:center;gap:12px;width:min(1120px,100%);max-height:calc(100vh - 48px);margin:0}
+    .home-gallery-lightbox img{display:block;max-width:100%;max-height:calc(100vh - 112px);border-radius:14px;object-fit:contain;box-shadow:0 24px 80px rgba(0,0,0,.55)}
+    .home-gallery-lightbox figcaption{color:rgba(255,255,255,.82);font-size:13px;font-weight:700}
+    .home-gallery-lightbox-close{position:absolute;top:12px;right:12px;width:42px;height:42px;border:1px solid rgba(255,255,255,.22);border-radius:50%;background:rgba(2,8,23,.82);color:#fff;font-size:29px;line-height:1;cursor:pointer}
+    .home-gallery-lightbox-close:hover,.home-gallery-lightbox-close:focus-visible{border-color:#67e8f9;background:rgba(6,31,64,.94);outline:none}
+    body.home-gallery-lightbox-open{overflow:hidden}
     .home-event-news{margin-top:34px;padding-top:28px;border-top:1px solid rgba(255,255,255,.1)}
     .home-event-news-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:16px}
     .home-event-news-head h3{margin:0;font-size:clamp(1.25rem,2.3vw,1.65rem);color:#fff}
@@ -254,6 +262,13 @@
       <a class="home-event-photo" href="assets/egc8-hub-rio-07.jpeg" target="_blank" rel="noopener"><img src="assets/egc8-hub-rio-07.jpeg" alt="Painel de organizações participantes com a marca Vulcan Defense" width="720" height="1280" loading="lazy"><span>Organizações</span></a>
       <a class="home-event-photo" href="assets/egc8-hub-rio-08.jpeg" target="_blank" rel="noopener"><img src="assets/egc8-hub-rio-08.jpeg" alt="Banner do Exercício Guardião Cibernético 8.0 no Hub Rio" width="720" height="1280" loading="lazy"><span>EGC 8.0</span></a>
       <a class="home-event-photo" href="assets/egc8-hub-rio-09.jpeg" target="_blank" rel="noopener"><img src="assets/egc8-hub-rio-09.jpeg" alt="Representante da Vulcan Defense com certificado de participação" width="1600" height="720" loading="lazy"><span>Participação</span></a>
+    </div>
+    <div class="home-gallery-lightbox" id="home-gallery-lightbox" role="dialog" aria-modal="true" aria-labelledby="home-gallery-lightbox-caption" hidden>
+      <figure>
+        <button class="home-gallery-lightbox-close" type="button" aria-label="Fechar imagem ampliada">×</button>
+        <img id="home-gallery-lightbox-image" src="" alt="">
+        <figcaption id="home-gallery-lightbox-caption"></figcaption>
+      </figure>
     </div>
 
     <div class="home-event-news" aria-labelledby="event-news-title">
@@ -464,6 +479,39 @@
     </div>
   </div>
 </div>
+<script>
+(function(){
+  var gallery = document.querySelector(".home-event-gallery");
+  var lightbox = document.getElementById("home-gallery-lightbox");
+  var image = document.getElementById("home-gallery-lightbox-image");
+  var caption = document.getElementById("home-gallery-lightbox-caption");
+  var closeButton = lightbox && lightbox.querySelector(".home-gallery-lightbox-close");
+  var lastTrigger;
+  if (!gallery || !lightbox || !image || !caption || !closeButton) return;
+  function closeLightbox(){
+    lightbox.hidden = true;
+    document.body.classList.remove("home-gallery-lightbox-open");
+    if (lastTrigger) lastTrigger.focus();
+  }
+  gallery.querySelectorAll(".home-event-photo").forEach(function(trigger){
+    trigger.addEventListener("click", function(event){
+      event.preventDefault();
+      var preview = trigger.querySelector("img");
+      var label = trigger.querySelector("span");
+      lastTrigger = trigger;
+      image.src = trigger.href;
+      image.alt = preview ? preview.alt : "Imagem ampliada da galeria";
+      caption.textContent = label ? label.textContent : "Registro do Hub Rio";
+      lightbox.hidden = false;
+      document.body.classList.add("home-gallery-lightbox-open");
+      closeButton.focus();
+    });
+  });
+  closeButton.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", function(event){ if (event.target === lightbox) closeLightbox(); });
+  document.addEventListener("keydown", function(event){ if (event.key === "Escape" && !lightbox.hidden) closeLightbox(); });
+})();
+</script>
 <script>
 (function(){
   var form = document.getElementById("contact-form");
