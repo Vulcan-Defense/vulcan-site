@@ -8,78 +8,108 @@ on:
   schedule:
     - cron: "0 3 * * *" # roda todo dia 03:00
 
-jobs:
-  security:
-    runs-on: ubuntu-latest
+# Menor privilégio por padrão; cada job declara apenas o que precisa.
+permissions:
+  contents: read
 
+concurrency:
+  group: security-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sast-sca:
+    name: Snyk (SAST/SCA/IaC)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
     permissions:
       contents: read
       security-events: write
+    env:
+      # Sem o token os passos do Snyk são ignorados em vez de falhar silenciosamente.
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.2.2
+        with:
+          persist-credentials: false
 
-      # # =========================
-      # # SNYK SETUP
-      # # =========================
-      # - name: Setup Snyk
-      #   uses: snyk/actions/setup@0.4.0
+      - name: Setup Node
+        if: env.SNYK_TOKEN != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
-      # - name: Auth Snyk
-      #   run: snyk auth ${{ secrets.SNYK_TOKEN }}
+      - name: Install Snyk CLI
+        if: env.SNYK_TOKEN != ''
+        run: npm install --global snyk@1
 
-      # # =========================
-      # # SAST (Code)
-      # # =========================
-      # - name: Snyk Code (SAST)
-      #   run: snyk code test --sarif > snyk-code.sarif || true
+      # O CLI lê SNYK_TOKEN do ambiente; não é necessário `snyk auth`.
+      - name: Snyk Open Source (SCA)
+        if: env.SNYK_TOKEN != ''
+        run: snyk test --all-projects --severity-threshold=high
+        continue-on-error: true
 
-      # # =========================
-      # # SCA (Dependencies)
-      # # =========================
-      # - name: Snyk Open Source
-      #   run: snyk test --all-projects || true
+      - name: Snyk Code (SAST)
+        if: env.SNYK_TOKEN != ''
+        run: snyk code test --severity-threshold=high
+        continue-on-error: true
 
-      # - name: Monitor project
-      #   run: snyk monitor --all-projects || true
-
-      # =========================
-      # IaC
-      # =========================
       - name: Snyk IaC
-        run: snyk iac test || true
+        if: env.SNYK_TOKEN != ''
+        run: snyk iac test
+        continue-on-error: true
 
-      # =========================
-      # DAST (SITE REAL)
-      # =========================
-      - name: Install OWASP ZAP
-        run: |
-          docker pull ghcr.io/zaproxy/zaproxy:stable
-          
-      - name: Run DAST Scan (ZAP)
+  dast:
+    name: DAST (OWASP ZAP)
+    # Não executa em PRs de forks: eles não recebem secrets e não devem publicar relatórios.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Pull OWASP ZAP
+        run: docker pull ghcr.io/zaproxy/zaproxy:stable
+
+      - name: Run DAST baseline (ZAP)
         run: |
           mkdir -p zap && chmod 777 zap
-          for TARGET in https://vulcandefense.com.br; do
-            SLUG=$(echo "$TARGET" | sed 's|https://||; s|/|_|g')
-            docker run --user root -v $(pwd)/zap:/zap/wrk/:rw \
+          docker run --rm --user root \
+            -v "$PWD/zap:/zap/wrk/:rw" \
             ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
-            -t "$TARGET" \
-            -r "zap-report-${SLUG}.html" || true
-          done
+            -t "https://vulcandefense.com.br" \
+            -r "zap-report.html" \
+            -I
 
-      # =========================
-      # Upload reports
-      # =========================
+      - name: Upload report (artifact)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: zap-report
+          path: zap/zap-report.html
+          if-no-files-found: warn
+          retention-days: 30
+
       - name: Push report to private repo
+        env:
+          REPORTS_TOKEN: ${{ secrets.GH_TOKEN }}
+        if: env.REPORTS_TOKEN != ''
         run: |
-          set -e
-          git clone https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/Vulcan-Defense/vulcan-security-reports.git repo
-          cp zap/zap-report-*.html repo/ 2>/dev/null || cp zap/zap-report.html repo/ 2>/dev/null || echo "No report found"
+          set -euo pipefail
+          # Token vai no header, não na URL do remote (evita vazar em logs/erros do git).
+          AUTH="$(printf 'x-access-token:%s' "$REPORTS_TOKEN" | base64 -w0)"
+          git -c http.extraheader="AUTHORIZATION: basic ${AUTH}" \
+            clone --depth 1 https://github.com/Vulcan-Defense/vulcan-security-reports.git repo
+          cp zap/zap-report.html repo/
           cd repo
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add .
-          git commit -m "Security report $(date)" || echo "Nothing to commit"
-          git push
-
+          git commit -m "Security report $(date -u +%Y-%m-%dT%H:%M:%SZ)" || exit 0
+          git -c http.extraheader="AUTHORIZATION: basic ${AUTH}" push

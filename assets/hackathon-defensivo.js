@@ -1,0 +1,2 @@
+/* Extraído de hackathon-defensivo.html para permitir CSP sem 'unsafe-inline' em script-src. */
+(function(){ var p=new URLSearchParams(location.search); if(p.get("enviado")==="1"){ history.replaceState({},"",location.pathname); var c=document.querySelector(".hk-form-card"); if(c){ var m=document.createElement("p"); m.className="form-msg success"; m.textContent="Inscrição enviada. Retornaremos em breve."; m.style.marginTop="14px"; c.insertBefore(m,c.firstChild.nextSibling); } } })();

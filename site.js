@@ -1,6 +1,10 @@
 (function () {
   "use strict";
 
+  /* Marca que o JS está ativo: o CSS usa isso para trocar o fallback de hover
+     por um estado controlado (que não some ao mover o mouse). */
+  document.documentElement.classList.add("js");
+
   var header = document.querySelector("body > header");
   if (!header) return;
 
@@ -25,108 +29,231 @@
     return "";
   }
 
-  function buildPrimaryNav(prefix) {
-    return ''
-      + '<div class="nav-item has-submenu">'
-      + '<a href="' + prefix + 'software-vulcan-platform.html">Plataforma</a>'
-      + '<div class="submenu">'
-      + '<a href="' + prefix + 'software-vulcan-platform.html">Vulcan Platform</a>'
-      + '<a href="' + prefix + 'endpoint-protection-siem.html">Endpoint Protection e SIEM</a>'
-      + '<a href="' + prefix + 'business-products/">Business Products</a>'
-      + '<a href="' + prefix + 'siem-ot.html">Vulcan-SIEM OT</a>'
-      + '</div></div>'
-      + '<div class="nav-item has-submenu">'
-      + '<a href="' + prefix + 'servicos.html">Serviços</a>'
-      + '<div class="submenu">'
-      + '<a href="' + prefix + 'cyber-defense.html">Cyber defense e SOC</a>'
-      + '<a href="' + prefix + 'pentest-yellow-team-secops-dast.html">Pentest e SecOps</a>'
-      + '<a href="' + prefix + 'integracao-siem-ia.html">SIEM com IA &amp; Superinteligência</a>'
-      + '<a href="' + prefix + 'compliance-ia.html">Compliance de IA &amp; Superinteligência</a>'
-      + '<a href="' + prefix + 'checklist-seguranca.html">Checklist SI (ISO/LGPD/PCI)</a>'
-      + '<a href="' + prefix + 'security-champions.html">Security Champions</a>'
-      + '<a href="' + prefix + 'treinamentos-owasp-mitre.html">Treinamentos OWASP e MITRE</a>'
-      + '<a href="' + prefix + 'hackathon-defensivo.html">Hackathon defensivo</a>'
-      + '<a href="' + prefix + 'relatorio-global.html">Relatório global</a>'
-      + '<a href="https://academy.vulcandefense.com.br" class="partner-external" target="_blank" rel="noopener noreferrer" title="Cursos e Certificações">Academia Vulcan</a>'
-      + '</div></div>'
-      + '<div class="nav-item has-submenu">'
-      + '<a href="' + prefix + 'quem-somos.html">Quem somos</a>'
-      + '<div class="submenu">'
-      + '<a href="' + prefix + 'quem-somos.html">Sobre a Vulcan</a>'
-      + '<a href="' + prefix + 'banco-de-talentos.html">Banco de Talentos</a>'
-      + '</div></div>'
-      + '<a href="' + prefix + 'contato.html">Contato</a>';
-  }
-
   var prefix = navPrefix();
-  nav.innerHTML = buildPrimaryNav(prefix);
+  var navList = nav.querySelector(".nav-list");
 
-  var brand = headerWrap.querySelector(".brand");
-  if (brand && !brand.querySelector("a")) {
-    var brandLink = document.createElement("a");
-    brandLink.href = prefix + "index.html";
-    brandLink.className = "brand-home";
-    brandLink.setAttribute("aria-label", "Vulcan Defense — início");
-    while (brand.firstChild) brandLink.appendChild(brand.firstChild);
-    brand.appendChild(brandLink);
+  if (!navList) {
+    /* Página sem o markup do menu: mantém uma navegação mínima utilizável. */
+    nav.innerHTML = '<ul class="nav-list">'
+      + '<li class="nav-item"><a class="nav-link" href="' + prefix + 'software-vulcan-platform.html">Plataforma</a></li>'
+      + '<li class="nav-item"><a class="nav-link" href="' + prefix + 'servicos.html">Serviços</a></li>'
+      + '<li class="nav-item"><a class="nav-link" href="' + prefix + 'portfolio-servicos.html">Portfólio</a></li>'
+      + '<li class="nav-item"><a class="nav-link" href="' + prefix + 'quem-somos.html">Quem somos</a></li>'
+      + '<li class="nav-item"><a class="nav-link" href="' + prefix + 'contato.html">Contato</a></li>'
+      + '</ul>';
+    navList = nav.querySelector(".nav-list");
   }
 
   nav.id = nav.id || "primary-navigation";
-  nav.setAttribute("aria-label", "Navegação principal");
+  nav.setAttribute("aria-label", nav.getAttribute("aria-label") || "Navegação principal");
 
-  var menuButton = document.createElement("button");
-  menuButton.className = "menu-toggle";
-  menuButton.type = "button";
+  var mobileQuery = window.matchMedia("(max-width: 980px)");
+  function isMobile() { return mobileQuery.matches; }
+
+  var menuButton = headerWrap.querySelector(".menu-toggle");
+  if (!menuButton) {
+    menuButton = document.createElement("button");
+    menuButton.className = "menu-toggle";
+    menuButton.type = "button";
+    menuButton.innerHTML = "<span></span><span></span><span></span>";
+    headerWrap.insertBefore(menuButton, nav);
+  }
   menuButton.setAttribute("aria-controls", nav.id);
   menuButton.setAttribute("aria-expanded", "false");
   menuButton.setAttribute("aria-label", "Abrir menu");
-  menuButton.innerHTML = '<span></span><span></span><span></span>';
-  headerWrap.insertBefore(menuButton, nav);
 
-  function setMenu(open) {
+  function closePanels(except) {
+    nav.querySelectorAll(".nav-item.is-open").forEach(function (item) {
+      if (item === except) return;
+      item.classList.remove("is-open");
+      var button = item.querySelector(".nav-expand");
+      if (button) button.setAttribute("aria-expanded", "false");
+    });
+  }
+
+  function setMenu(open, restoreFocus) {
     header.classList.toggle("menu-open", open);
     document.body.classList.toggle("nav-open", open);
     menuButton.setAttribute("aria-expanded", String(open));
     menuButton.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    if (!open) {
+      closePanels();
+      if (restoreFocus) menuButton.focus();
+    }
   }
 
   menuButton.addEventListener("click", function () {
     setMenu(!header.classList.contains("menu-open"));
   });
 
-  nav.addEventListener("click", function (event) {
-    if (event.target.closest("a") && window.innerWidth <= 980) setMenu(false);
+  nav.querySelectorAll(".nav-expand").forEach(function (button) {
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      var item = button.closest(".nav-item");
+      if (!item) return;
+      var open = !item.classList.contains("is-open");
+      closePanels(item);
+      item.classList.toggle("is-open", open);
+      button.setAttribute("aria-expanded", String(open));
+    });
   });
 
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" && header.classList.contains("menu-open")) {
-      setMenu(false);
-      menuButton.focus();
+  /* Em dispositivos com mouse, o submenu abre no hover e permanece aberto
+     enquanto o ponteiro estiver no cabeçalho ou no próprio painel, evitando
+     que o menu suma ao descer o cursor até os links. */
+  var hoverQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+  var hoverCloseTimer = 0;
+
+  function openPanel(item) {
+    if (isMobile() || !hoverQuery.matches) return;
+    window.clearTimeout(hoverCloseTimer);
+    closePanels(item);
+    item.classList.add("is-open");
+    var toggle = item.querySelector(".nav-expand");
+    if (toggle) toggle.setAttribute("aria-expanded", "true");
+  }
+
+  function scheduleClosePanels() {
+    if (isMobile() || !hoverQuery.matches) return;
+    window.clearTimeout(hoverCloseTimer);
+    hoverCloseTimer = window.setTimeout(closePanels, 160);
+  }
+
+  nav.querySelectorAll(".has-mega").forEach(function (item) {
+    var button = item.querySelector(".nav-expand");
+    if (!button) return;
+    item.addEventListener("pointerenter", function (event) {
+      if (event.pointerType === "touch") return;
+      openPanel(item);
+    });
+    item.addEventListener("focusout", function () {
+      window.setTimeout(function () {
+        if (item.contains(document.activeElement)) return;
+        item.classList.remove("is-open");
+        button.setAttribute("aria-expanded", "false");
+      }, 0);
+    });
+  });
+
+  header.addEventListener("pointerenter", function () { window.clearTimeout(hoverCloseTimer); });
+  header.addEventListener("pointerleave", function (event) {
+    if (event.pointerType === "touch") return;
+    scheduleClosePanels();
+  });
+
+  /* Teclado: ←/→ alternam itens, ↓ abre o submenu e ↑ volta ao botão. */
+  nav.addEventListener("keydown", function (event) {
+    if (isMobile()) return;
+    var active = document.activeElement;
+    var key = event.key;
+
+    if (key === "ArrowUp") {
+      var openPanelEl = active && active.closest ? active.closest(".nav-panel") : null;
+      if (!openPanelEl) return;
+      event.preventDefault();
+      var owner = openPanelEl.closest(".nav-item");
+      var toggleUp = owner && owner.querySelector(".nav-expand");
+      if (toggleUp) toggleUp.focus();
+      return;
+    }
+
+    if (!active || !(active.classList.contains("nav-link") || active.classList.contains("nav-expand"))) return;
+    var items = Array.prototype.slice.call(nav.querySelectorAll(".nav-list > .nav-item"));
+    var index = items.indexOf(active.closest(".nav-item"));
+    if (index === -1) return;
+
+    if (key === "ArrowRight" || key === "ArrowLeft") {
+      event.preventDefault();
+      var step = key === "ArrowRight" ? 1 : -1;
+      var next = items[(index + step + items.length) % items.length];
+      var link = next.querySelector(".nav-link");
+      if (link) link.focus();
+      return;
+    }
+
+    if (key === "ArrowDown") {
+      var panel = items[index].querySelector(".nav-panel");
+      if (!panel) return;
+      event.preventDefault();
+      if (!items[index].classList.contains("is-open")) openPanel(items[index]);
+      var first = panel.querySelector(".nav-card, .nav-aside-link");
+      if (first) window.setTimeout(function () { first.focus(); }, 40);
     }
   });
 
-  window.addEventListener("resize", function () {
-    if (window.innerWidth > 980) setMenu(false);
+  nav.addEventListener("click", function (event) {
+    if (event.target.closest("a") && isMobile()) setMenu(false);
   });
 
-  var currentPage = window.location.pathname.split("/").pop() || "index.html";
-  nav.querySelectorAll("a").forEach(function (link) {
-    var target = (link.getAttribute("href") || "").split("#")[0];
-    if (!target || target.indexOf(":") !== -1) return;
-    var targetName = target.split("/").filter(Boolean).pop() || "";
-    var here = window.location.pathname.replace(/\\/g, "/");
-    var isCurrent = targetName === currentPage
-      || (target.endsWith("business-products/") && here.indexOf("/business-products") !== -1)
-      || (target.endsWith("business-products") && here.indexOf("/business-products") !== -1);
+  document.addEventListener("click", function (event) {
+    if (header.contains(event.target)) return;
+    closePanels();
+    if (header.classList.contains("menu-open")) setMenu(false);
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      var openItem = nav.querySelector(".nav-item.is-open");
+      if (openItem) {
+        closePanels();
+        var toggle = openItem.querySelector(".nav-expand");
+        if (toggle) toggle.focus();
+        return;
+      }
+      if (header.classList.contains("menu-open")) setMenu(false, true);
+      return;
+    }
+    if (event.key !== "Tab" || !header.classList.contains("menu-open")) return;
+    var focusables = Array.prototype.filter.call(
+      header.querySelectorAll("a[href], button:not([disabled])"),
+      function (element) { return element.offsetParent !== null; }
+    );
+    if (!focusables.length) return;
+    var first = focusables[0];
+    var last = focusables[focusables.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
+  function onViewportChange() {
+    if (!isMobile()) setMenu(false);
+  }
+  if (mobileQuery.addEventListener) mobileQuery.addEventListener("change", onViewportChange);
+  else window.addEventListener("resize", onViewportChange);
+
+  function normalizePath(value) {
+    var normalized = value.replace(/\\/g, "/");
+    if (normalized.charAt(normalized.length - 1) === "/") normalized += "index.html";
+    return normalized;
+  }
+
+  var here = normalizePath(window.location.pathname);
+  nav.querySelectorAll("a[href]").forEach(function (link) {
+    var href = link.getAttribute("href");
+    if (!href || /^(?:[a-z]+:|\/\/|#)/i.test(href)) return;
+    var target;
+    try {
+      target = normalizePath(new URL(href, window.location.href).pathname);
+    } catch (error) {
+      return;
+    }
+    var isCurrent = target === here;
     link.classList.toggle("active", isCurrent);
     if (isCurrent) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
   });
 
-  nav.querySelectorAll(".has-submenu").forEach(function (item) {
-    if (item.querySelector(".submenu a[aria-current='page']")) {
-      var parentLink = item.querySelector(":scope > a");
-      if (parentLink) parentLink.classList.add("active");
+  nav.querySelectorAll(".has-mega").forEach(function (item) {
+    var parentLink = item.querySelector(":scope > .nav-link");
+    if (parentLink && item.querySelector(".nav-panel a[aria-current='page']")) {
+      parentLink.classList.add("active");
+      parentLink.setAttribute("aria-current", "true");
     }
   });
 
@@ -140,7 +267,12 @@
     var ratio = scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0;
     progress.style.transform = "scaleX(" + ratio + ")";
     header.classList.toggle("is-scrolled", window.scrollY > 12);
+    if (!isMobile() && Math.abs(window.scrollY - lastScrollY) > 8) {
+      lastScrollY = window.scrollY;
+      if (nav.querySelector(".nav-item.is-open")) closePanels();
+    }
   }
+  var lastScrollY = window.scrollY;
   updatePageState();
   window.addEventListener("scroll", updatePageState, { passive: true });
 
@@ -160,29 +292,30 @@
   }
 
   var footerContainer = document.querySelector("footer .container");
-  if (footerContainer && !footerContainer.querySelector(".site-legal")) {
+  var hasRichFooter = !!document.querySelector(".footer-main");
+  if (footerContainer && !hasRichFooter && !footerContainer.querySelector(".site-legal")) {
     var legal = document.createElement("span");
     legal.className = "site-legal";
     legal.textContent = "VULCAN DEFENSE LTDA - ME · CNPJ 51.530.057/0001-33";
     footerContainer.appendChild(legal);
   }
-  if (footerContainer && !footerContainer.querySelector(".site-address")) {
+  if (footerContainer && !hasRichFooter && !footerContainer.querySelector(".site-address")) {
     var address = document.createElement("address");
     address.className = "site-address";
     address.textContent = "Avenida Marechal Câmara, 160, Sala 1107, Centro, Rio de Janeiro - RJ, 20020-080";
     footerContainer.appendChild(address);
   }
-  if (footerContainer && !footerContainer.querySelector(".site-linkedin")) {
+  if (footerContainer && !hasRichFooter && !footerContainer.querySelector(".site-linkedin")) {
     var linkedin = document.createElement("a");
     linkedin.className = "site-linkedin";
-    linkedin.href = "https://www.linkedin.com/company/112516097/admin/dashboard/";
+    linkedin.href = "https://www.linkedin.com/company/112516097/";
     linkedin.target = "_blank";
     linkedin.rel = "noopener noreferrer";
     linkedin.setAttribute("aria-label", "LinkedIn da Vulcan Defense");
     linkedin.textContent = "LinkedIn";
     footerContainer.appendChild(linkedin);
   }
-  if (footerContainer && !footerContainer.querySelector(".site-footer-nav")) {
+  if (footerContainer && !hasRichFooter && !footerContainer.querySelector(".site-footer-nav")) {
     var footerNav = document.createElement("nav");
     footerNav.className = "site-footer-nav";
     footerNav.setAttribute("aria-label", "Links institucionais");

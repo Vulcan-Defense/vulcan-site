@@ -1,0 +1,7 @@
+Contact: mailto:contato@vulcandefense.com.br
+Contact: https://vulcandefense.com.br/contato.html
+Expires: 2027-10-29T00:00:00.000Z
+Preferred-Languages: pt-BR, en
+Canonical: https://vulcandefense.com.br/.well-known/security.txt
+Policy: https://vulcandefense.com.br/docs/SEGURANCA.md
+Acknowledgments: https://vulcandefense.com.br/quem-somos.html
