@@ -50,15 +50,29 @@
 .bp-package-strip strong{display:block;color:#edf7fa;font-size:14px;line-height:1.4;overflow-wrap:anywhere}
 .bp-package-strip p{margin:6px 0 0;color:#84959f;font-size:12px;line-height:1.55}
 .bp-support-table-wrap{overflow-x:auto;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:rgba(5,15,22,.68)}
-.bp-support-table{width:100%;min-width:760px;border-collapse:collapse;text-align:left}
+.bp-support-table{width:100%;min-width:760px;border-collapse:separate;border-spacing:0;text-align:left}
 .bp-support-table caption{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.bp-support-table th,.bp-support-table td{padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:top}
+.bp-support-table th,.bp-support-table td{padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:middle}
 .bp-support-table th{color:#82939e;font-size:10px;font-weight:850;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.025)}
 .bp-support-table td{color:#9aabb5;font-size:13px;line-height:1.55}
 .bp-support-table td:first-child{width:31%;color:#e1edf1;font-weight:750}
 .bp-support-table td:nth-child(2){width:132px}
 .bp-support-table tbody tr:last-child td{border-bottom:none}
-.bp-support-table tbody tr:hover{background:rgba(94,220,231,.035)}
+.bp-support-table tbody tr{transition:background .18s ease}
+.bp-support-table tbody tr:hover{background:rgba(94,220,231,.055)}
+.bp-os-entry{display:flex;align-items:center;gap:11px}
+.bp-os-logo{width:30px;height:30px;flex:0 0 30px;display:grid;place-items:center;border-radius:9px;font-size:13px;font-weight:900;line-height:1;letter-spacing:-.04em}
+.bp-os-logo svg{width:17px;height:17px;fill:currentColor}
+.bp-os-windows{color:#72c9ff;background:rgba(75,157,255,.15)}
+.bp-os-ubuntu{color:#ff9b78;background:rgba(235,91,49,.14)}
+.bp-os-debian{color:#f19aac;background:rgba(210,45,73,.14)}
+.bp-os-rhel{color:#ff909a;background:rgba(238,51,76,.14)}
+.bp-os-linux{color:#e9d589;background:rgba(206,181,73,.14)}
+.bp-os-amazon{color:#f7bb79;background:rgba(255,153,0,.14)}
+.bp-os-suse{color:#bbeca0;background:rgba(108,180,65,.14)}
+.bp-os-centos{color:#b7a7f3;background:rgba(137,94,216,.14)}
+.bp-os-fedora{color:#94bfff;background:rgba(81,109,233,.16)}
+.bp-version{display:inline-flex;padding:5px 8px;border-radius:7px;background:rgba(255,255,255,.055);color:#c4d1d6;font-size:11px;font-weight:750;white-space:nowrap}
 .bp-status{display:inline-flex;padding:4px 8px;border:1px solid;border-radius:999px;font-size:10px;font-weight:850;letter-spacing:.05em;white-space:nowrap}
 .bp-status.is-supported{color:#a5e6bf;background:rgba(126,226,168,.1);border-color:rgba(126,226,168,.24)}
 .bp-status.is-transition{color:#f4d38c;background:rgba(246,200,95,.1);border-color:rgba(246,200,95,.25)}
@@ -76,4 +90,4 @@
 .bp-back:hover{color:var(--bp-cyan)}
 
 @media(max-width:980px){.bp-hero-grid,.bp-product-grid,.bp-support-notes{grid-template-columns:1fr}.bp-support-head{align-items:flex-start;flex-direction:column;gap:10px}}
-@media(max-width:700px){.bp-hero{padding-top:52px}.bp-package-strip{grid-template-columns:1fr}.bp-package-strip>div+div{border-left:0;border-top:1px solid rgba(255,255,255,.08)}.bp-support-table th,.bp-support-table td{padding:14px 16px}}
+@media(max-width:700px){.bp-hero{padding-top:52px}.bp-package-strip{grid-template-columns:1fr}.bp-package-strip>div+div{border-left:0;border-top:1px solid rgba(255,255,255,.08)}.bp-support-table-wrap{overflow:visible;background:transparent;border:0}.bp-support-table,.bp-support-table tbody,.bp-support-table tr,.bp-support-table td{display:block;min-width:0;width:auto}.bp-support-table thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.bp-support-table tbody{display:grid;gap:10px}.bp-support-table tbody tr{padding:15px 16px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(5,15,22,.68)}.bp-support-table th,.bp-support-table td{padding:0;border:0}.bp-support-table td{display:grid;grid-template-columns:102px minmax(0,1fr);gap:12px;margin-top:10px;align-items:start;font-size:12px}.bp-support-table td::before{color:#738792;font-size:9px;font-weight:850;letter-spacing:.1em;text-transform:uppercase}.bp-support-table td:first-child{display:block;width:auto;margin-top:0;font-size:14px}.bp-support-table--windows td:nth-child(2)::before{content:"Estado"}.bp-support-table--windows td:nth-child(3)::before{content:"Escopo"}.bp-support-table--linux td:nth-child(2)::before{content:"Versões"}.bp-support-table--linux td:nth-child(3)::before{content:"Estado"}.bp-support-table--linux td:nth-child(4)::before{content:"Escopo"}.bp-support-table tbody tr:hover{background:rgba(5,15,22,.68)}}
