@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "upload-packages": "powershell -ExecutionPolicy Bypass -File ./scripts/upload-packages.ps1"
+    "stage-artifacts": "powershell -ExecutionPolicy Bypass -File ./scripts/publish-artifacts-to-github.ps1"
   },
   "devDependencies": {
     "wrangler": "^4.130.0"

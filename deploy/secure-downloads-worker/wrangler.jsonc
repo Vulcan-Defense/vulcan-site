@@ -7,11 +7,10 @@
     { "pattern": "vulcandefense.com.br/business-products/portal*", "zone_name": "vulcandefense.com.br" },
     { "pattern": "www.vulcandefense.com.br/business-products/portal*", "zone_name": "vulcandefense.com.br" }
   ],
-  "r2_buckets": [
-    { "binding": "PACKAGES", "bucket_name": "vulcan-private-downloads" }
-  ],
   "vars": {
-    "DOWNLOAD_USERNAME": "cliente"
+    "DOWNLOAD_USERNAME": "cliente",
+    "GITHUB_REPOSITORY": "Vulcan-Defense/vulcan-agent-artifacts",
+    "GITHUB_REF": "main"
   },
   "observability": { "enabled": true, "traces": { "enabled": true } }
 }

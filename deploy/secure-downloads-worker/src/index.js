@@ -123,9 +123,14 @@ export default {
       if (!session) return redirect(`${PORTAL_PATH}/`);
       const item = PACKAGES.find((entry) => entry.id === downloadMatch[1]);
       if (!item) return new Response("Pacote não encontrado.", { status: 404, headers: securityHeaders({ "Content-Type": "text/plain; charset=utf-8" }) });
-      const object = await env.PACKAGES.get(item.key);
-      if (!object) return new Response("Pacote indisponível.", { status: 404, headers: securityHeaders({ "Content-Type": "text/plain; charset=utf-8" }) });
-      return new Response(object.body, { headers: securityHeaders({ "Content-Type": item.contentType, "Content-Disposition": `attachment; filename=\"${item.filename}\"` }) });
+      const repository = String(env.GITHUB_REPOSITORY || "");
+      const token = String(env.GITHUB_TOKEN || "");
+      if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repository) || !token) return new Response("Portal de downloads indisponível.", { status: 503, headers: securityHeaders({ "Content-Type": "text/plain; charset=utf-8" }) });
+      const artifactUrl = new URL(`https://api.github.com/repos/${repository}/contents/${item.key}`);
+      artifactUrl.searchParams.set("ref", String(env.GITHUB_REF || "main"));
+      const artifact = await fetch(artifactUrl, { headers: { "Accept": "application/vnd.github.raw+json", "Authorization": `Bearer ${token}`, "User-Agent": "vulcan-secure-downloads" } });
+      if (!artifact.ok || !artifact.body) return new Response("Pacote indisponível.", { status: artifact.status === 404 ? 404 : 502, headers: securityHeaders({ "Content-Type": "text/plain; charset=utf-8" }) });
+      return new Response(artifact.body, { headers: securityHeaders({ "Content-Type": item.contentType, "Content-Disposition": `attachment; filename=\"${item.filename}\"` }) });
     }
 
     return new Response("Recurso não encontrado.", { status: 404, headers: securityHeaders({ "Content-Type": "text/plain; charset=utf-8" }) });
