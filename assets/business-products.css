@@ -39,10 +39,41 @@
 .bp-product-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06);font-size:12px;font-weight:750;color:var(--bp-cyan)}
 .bp-product-card.is-soon .bp-product-foot{color:#9a8cb8}
 
+.bp-support{padding:68px 0 88px;border-top:1px solid var(--line);background:linear-gradient(180deg,rgba(94,220,231,.035),transparent 62%)}
+.bp-support-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:28px}
+.bp-support-head .bp-section-text{max-width:760px}
+.bp-support-revision{flex:none;margin:0 0 4px;color:#758690;font-size:12px;font-weight:700}
+.bp-package-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:20px;border:1px solid rgba(94,220,231,.16);border-radius:18px;overflow:hidden;background:rgba(6,17,25,.7)}
+.bp-package-strip>div{padding:20px 22px}
+.bp-package-strip>div+div{border-left:1px solid rgba(255,255,255,.08)}
+.bp-package-label{display:block;margin-bottom:7px;color:var(--bp-cyan);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.bp-package-strip strong{display:block;color:#edf7fa;font-size:14px;line-height:1.4;overflow-wrap:anywhere}
+.bp-package-strip p{margin:6px 0 0;color:#84959f;font-size:12px;line-height:1.55}
+.bp-support-table-wrap{overflow-x:auto;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:rgba(5,15,22,.68)}
+.bp-support-table{width:100%;min-width:760px;border-collapse:collapse;text-align:left}
+.bp-support-table caption{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.bp-support-table th,.bp-support-table td{padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:top}
+.bp-support-table th{color:#82939e;font-size:10px;font-weight:850;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.025)}
+.bp-support-table td{color:#9aabb5;font-size:13px;line-height:1.55}
+.bp-support-table td:first-child{width:31%;color:#e1edf1;font-weight:750}
+.bp-support-table td:nth-child(2){width:132px}
+.bp-support-table tbody tr:last-child td{border-bottom:none}
+.bp-support-table tbody tr:hover{background:rgba(94,220,231,.035)}
+.bp-status{display:inline-flex;padding:4px 8px;border:1px solid;border-radius:999px;font-size:10px;font-weight:850;letter-spacing:.05em;white-space:nowrap}
+.bp-status.is-supported{color:#a5e6bf;background:rgba(126,226,168,.1);border-color:rgba(126,226,168,.24)}
+.bp-status.is-transition{color:#f4d38c;background:rgba(246,200,95,.1);border-color:rgba(246,200,95,.25)}
+.bp-status.is-unsupported{color:#e8a6ae;background:rgba(244,114,128,.09);border-color:rgba(244,114,128,.23)}
+.bp-support-notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.bp-support-notes p{margin:0;padding:16px 18px;border-left:2px solid rgba(94,220,231,.55);background:rgba(94,220,231,.045);color:#94a5ae;font-size:13px;line-height:1.65}
+.bp-support-notes strong{color:#d9e9ed}
+.bp-support-notes code{color:#d7edf0;font-size:.92em}
+.bp-linux-support{margin-top:64px;padding-top:64px;border-top:1px solid rgba(255,255,255,.1)}
+.bp-status.is-lab{color:#b9adf2;background:rgba(167,139,250,.1);border-color:rgba(167,139,250,.25)}
+
 .bp-product-hero{padding-top:48px;padding-bottom:8px}
 .bp-product-hero .dl-hero{padding-top:24px;padding-bottom:48px}
 .bp-back{display:inline-flex;align-items:center;gap:8px;margin-bottom:8px;color:#8d9ca6;font-size:12px;font-weight:700;text-decoration:none}
 .bp-back:hover{color:var(--bp-cyan)}
 
-@media(max-width:980px){.bp-hero-grid,.bp-product-grid{grid-template-columns:1fr}}
-@media(max-width:700px){.bp-hero{padding-top:52px}}
+@media(max-width:980px){.bp-hero-grid,.bp-product-grid,.bp-support-notes{grid-template-columns:1fr}.bp-support-head{align-items:flex-start;flex-direction:column;gap:10px}}
+@media(max-width:700px){.bp-hero{padding-top:52px}.bp-package-strip{grid-template-columns:1fr}.bp-package-strip>div+div{border-left:0;border-top:1px solid rgba(255,255,255,.08)}.bp-support-table th,.bp-support-table td{padding:14px 16px}}

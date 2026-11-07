@@ -242,6 +242,106 @@
         </div>
       </div>
     </section>
+
+    <section class="bp-support" id="suporte-windows" aria-labelledby="support-title">
+      <div class="container">
+        <div class="bp-support-head">
+          <div>
+            <div class="section-title-small">Agente EDR/XDR Vulcan</div>
+            <h2 class="bp-section-title" id="support-title">Escopo de suporte para Windows</h2>
+            <p class="bp-section-text">Compatibilidade validada para o agente EDR 2.11 com sensor nativo 0.19.0. Antes de cada rollout, valide a versão e as atualizações de segurança do sistema operacional.</p>
+          </div>
+          <p class="bp-support-revision">Revisado em 7 nov 2026</p>
+        </div>
+
+        <div class="bp-package-strip" aria-label="Pacotes do agente para Windows">
+          <div>
+            <span class="bp-package-label">Windows cliente</span>
+            <strong>vulcan-agent-windows.msi</strong>
+            <p>Pacote x86, compatível com WOW64.</p>
+          </div>
+          <div>
+            <span class="bp-package-label">Windows Server</span>
+            <strong>vulcan-agent-windows-server-x64.msi</strong>
+            <p>Pacote x64 para produtos Server; inclui sensor windows-amd64.</p>
+          </div>
+        </div>
+
+        <div class="bp-support-table-wrap" tabindex="0">
+          <table class="bp-support-table">
+            <caption>Compatibilidade do Vulcan Agent EDR/XDR em Windows</caption>
+            <thead>
+              <tr><th scope="col">Sistema</th><th scope="col">Estado</th><th scope="col">Escopo</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Windows Server 2025 LTSC x64</td><td><span class="bp-status is-supported">Suportado</span></td><td>Standard e Datacenter; validar a atualização cumulativa mais recente.</td></tr>
+              <tr><td>Windows Server 2022 LTSC x64</td><td><span class="bp-status is-supported">Suportado</span></td><td>Standard, Datacenter e Azure Edition.</td></tr>
+              <tr><td>Windows Server 2019 LTSC x64</td><td><span class="bp-status is-supported">Suportado</span></td><td>Manter a atualização de segurança atual.</td></tr>
+              <tr><td>Windows Server 2016 x64</td><td><span class="bp-status is-transition">Transição</span></td><td>Suporte limitado até o fim do suporte estendido; novos rollouts devem priorizar 2022 ou 2025.</td></tr>
+              <tr><td>Server Core 2019, 2022 e 2025</td><td><span class="bp-status is-supported">Suportado</span></td><td>Serviço, EDR e Active Response; sem bandeja ou console gráfico.</td></tr>
+              <tr><td>Windows 11 Enterprise/Pro 25H2 x64</td><td><span class="bp-status is-supported">Suportado</span></td><td>Plataforma cliente preferencial.</td></tr>
+              <tr><td>Windows 11 24H2 Enterprise/Education</td><td><span class="bp-status is-transition">Transição</span></td><td>Suportado durante o ciclo de vida do fornecedor.</td></tr>
+              <tr><td>Windows 10</td><td><span class="bp-status is-transition">Transição</span></td><td>Apenas inventários com ESU ou LTSC aplicável; não adicionar endpoints fora de suporte.</td></tr>
+              <tr><td>Nano Server, SAC/Annual descontinuado, x86 e sistemas sem atualização de segurança</td><td><span class="bp-status is-unsupported">Não suportado</span></td><td>Não instalar.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="bp-support-notes">
+          <p><strong>Limites de proteção:</strong> o agente fornece telemetria, detecção por hash, varredura assinada agendada e quarentena por política. Ele não substitui um antivírus.</p>
+          <p><strong>Proteção primária:</strong> mantenha o Microsoft Defender ativo em todas as versões deste escopo; o agente não inclui minifiltro de proteção em acesso, ELAM ou provedor certificado no Windows Security Center.</p>
+        </div>
+
+        <div class="bp-linux-support" aria-labelledby="linux-support-title">
+          <div class="bp-support-head">
+            <div>
+              <div class="section-title-small">Agente EDR/XDR Vulcan</div>
+              <h2 class="bp-section-title" id="linux-support-title">Escopo de suporte para Linux</h2>
+              <p class="bp-section-text">Compatibilidade da release Linux 1.8 com sensor EDR 0.19.0. A matriz contempla distribuições x86_64 com glibc e systemd como caminho de operação validado.</p>
+            </div>
+            <p class="bp-support-revision">Revisado em 7 nov 2026</p>
+          </div>
+
+          <div class="bp-package-strip" aria-label="Pacotes do agente para Linux">
+            <div>
+              <span class="bp-package-label">Debian e Ubuntu</span>
+              <strong>vulcan-agent-linux-amd64.deb</strong>
+              <p>amd64/x86_64 · systemd, com scripts de compatibilidade SysV quando presentes.</p>
+            </div>
+            <div>
+              <span class="bp-package-label">RHEL e derivados</span>
+              <strong>vulcan-agent-linux-x86_64.rpm</strong>
+              <p>x86_64 · systemd, com scripts de compatibilidade SysV quando presentes.</p>
+            </div>
+          </div>
+
+          <div class="bp-support-table-wrap" tabindex="0">
+            <table class="bp-support-table">
+              <caption>Compatibilidade do Vulcan Agent EDR/XDR em Linux</caption>
+              <thead>
+                <tr><th scope="col">Família</th><th scope="col">Versões-alvo</th><th scope="col">Estado</th><th scope="col">Escopo</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Ubuntu LTS</td><td>20.04, 22.04, 24.04</td><td><span class="bp-status is-supported">Suportado</span></td><td>DEB amd64; priorizar 22.04 e 24.04.</td></tr>
+                <tr><td>Debian</td><td>11, 12</td><td><span class="bp-status is-supported">Suportado</span></td><td>DEB amd64.</td></tr>
+                <tr><td>Debian</td><td>13</td><td><span class="bp-status is-transition">Em homologação</span></td><td>Não usar em produção antes do gate de VM.</td></tr>
+                <tr><td>RHEL</td><td>8, 9</td><td><span class="bp-status is-supported">Suportado</span></td><td>RPM x86_64.</td></tr>
+                <tr><td>Rocky Linux, AlmaLinux e Oracle Linux</td><td>8, 9</td><td><span class="bp-status is-supported">Suportado</span></td><td>RPM x86_64.</td></tr>
+                <tr><td>Amazon Linux</td><td>2023</td><td><span class="bp-status is-transition">Em homologação</span></td><td>Validar dependências na AMI corporativa.</td></tr>
+                <tr><td>SLES e openSUSE Leap</td><td>15</td><td><span class="bp-status is-transition">Em homologação</span></td><td>Validar o gerenciador de serviços e bibliotecas.</td></tr>
+                <tr><td>CentOS Linux, Amazon Linux 2 e RHEL</td><td>7</td><td><span class="bp-status is-unsupported">Legado</span></td><td>Não aprovar novos rollouts.</td></tr>
+                <tr><td>Fedora e distribuições rolling release</td><td>—</td><td><span class="bp-status is-lab">Laboratório</span></td><td>Não suportadas para produção.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="bp-support-notes">
+            <p><strong>Requisitos:</strong> CPU x86_64, glibc, armazenamento gravável em <code>/var/ossec</code>, saída ao Vulcan Manager e certificados configurados quando mTLS estiver habilitado. Os serviços <code>vulcan-agent</code> e <code>vulcan-edr</code> devem iniciar automaticamente.</p>
+            <p><strong>Limites conhecidos:</strong> ARM64/aarch64, ARMv7, i386 e musl/Alpine não são distribuídos nesta release. O sensor não inclui módulo de kernel de prevenção em acesso; não desative a proteção antimalware existente. A telemetria Zeek é opcional com <code>ZEEK_SKIP=1</code>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
