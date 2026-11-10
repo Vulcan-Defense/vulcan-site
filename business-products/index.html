@@ -10,11 +10,11 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
   <meta name="theme-color" content="#071018" />
-  <title>Business Products · Central de Download | Vulcan Defense</title>
-  <meta name="description" content="Central oficial de download dos produtos Vulcan Defense: agentes SIEM, plataforma e componentes operacionais para clientes." />
+  <title>Compatibilidade dos Agentes | Vulcan Defense</title>
+  <meta name="description" content="Matriz oficial de compatibilidade e arquiteturas dos agentes Vulcan Defense para ambientes Windows e Linux." />
   <link rel="canonical" href="https://vulcandefense.com.br/business-products/" />
   <link rel="stylesheet" href="../styles.css?v=20261029d" />
-  <link rel="stylesheet" href="../assets/business-products.css" />
+  <link rel="stylesheet" href="../assets/business-products.css?v=20261110a" />
   <script src="../site.js?v=20261029d" defer></script>
 </head>
 <body class="bp-page">
@@ -56,7 +56,7 @@
                 </a>
                 <a class="nav-card" href="../business-products/">
                   <span class="nav-card-title">Business Products</span>
-                  <span class="nav-card-desc">Instaladores, agentes e checksums oficiais.</span>
+                  <span class="nav-card-desc">Compatibilidade, sistemas e arquiteturas dos agentes.</span>
                 </a>
               </div>
               <aside class="nav-panel-aside">
@@ -192,61 +192,55 @@
       <div class="container bp-hero-grid">
         <div>
           <div class="bp-kicker">Business Products</div>
-          <h1 class="bp-title">Central de <em>Download</em></h1>
-          <p class="bp-lead">Repositório oficial de instaladores, agentes e artefatos operacionais dos produtos Vulcan. Cada produto possui página dedicada com pacotes por plataforma, checksums e orientações de implantação.</p>
+          <h1 class="bp-title">Compatibilidade dos <em>agentes</em></h1>
+          <p class="bp-lead">Referência técnica para planejar a implantação dos agentes Vulcan em estações, servidores e ambientes Linux. Consulte sistemas operacionais, versões homologadas, arquitetura de CPU e limites de suporte.</p>
         </div>
-        <aside class="bp-hero-aside" aria-label="Política de distribuição">
-          <h2>Acesso e integridade</h2>
-          <p>Downloads destinados a clientes com contrato ou projeto ativo. Sempre valide SHA-512 antes de instalar.</p>
+        <aside class="bp-hero-aside" aria-label="Resumo de compatibilidade">
+          <h2>Escopo publicado</h2>
+          <p>A matriz separa ambientes homologados, em transição e não suportados.</p>
           <ul>
-            <li>Artefatos binários em <code>/downloads/</code></li>
-            <li>Documentação por produto nesta central</li>
-            <li>Suporte via <a href="../contato.html" class="cyan">contato comercial</a></li>
+            <li>Windows cliente e Windows Server em x64</li>
+            <li>Linux x86_64 com glibc e systemd</li>
+            <li>Requisitos técnicos e limites por plataforma</li>
           </ul>
         </aside>
       </div>
     </section>
 
-    <section class="bp-catalog" id="catalogo">
+    <section class="bp-architecture" id="arquiteturas" aria-labelledby="architecture-title">
       <div class="container">
-        <div class="bp-section-head">
-          <div class="section-title-small">Catálogo</div>
-          <h2 class="bp-section-title">Produtos disponíveis</h2>
-          <p class="bp-section-text">Selecione o produto para ver releases, agentes compatíveis e guias de instalação.</p>
-        </div>
-
-        <div class="bp-product-grid">
-          <a class="bp-product-card is-live" href="vulcan-siem/">
-            <span class="bp-product-badge">Disponível</span>
-            <div class="bp-product-icon" aria-hidden="true">SIEM</div>
-            <h3>Vulcan SIEM</h3>
-            <p>Agentes para Windows e Linux (.deb / .rpm), telemetria criptografada, FIM, inventário e integração ao manager corporativo.</p>
-            <div class="bp-product-foot"><span>3 pacotes · SHA-512</span><span>Ver downloads →</span></div>
-          </a>
-
-          <article class="bp-product-card is-soon" aria-disabled="true">
-            <span class="bp-product-badge">Em breve</span>
-            <div class="bp-product-icon" aria-hidden="true">PLT</div>
-            <h3>Vulcan Platform</h3>
-            <p>Console unificado, conectores e componentes on-premise da plataforma de observabilidade e resposta.</p>
-            <div class="bp-product-foot"><span>Q4 2026</span><span>Lista de espera</span></div>
-          </article>
-
-          <article class="bp-product-card is-soon" aria-disabled="true">
-            <span class="bp-product-badge">Em breve</span>
-            <div class="bp-product-icon" aria-hidden="true">OT</div>
-            <h3>Vulcan-SIEM OT Collector</h3>
-            <p>Coletores e parsers para ambientes ICS/SCADA — extensão do pipeline OT do Vulcan-SIEM.</p>
-            <div class="bp-product-foot"><span>Projeto OT</span><span>Em homologação</span></div>
-          </article>
-        </div>
-        <div class="bp-client-portal">
+        <div class="bp-architecture-head">
           <div>
-            <div class="section-title-small">Clientes autorizados</div>
-            <h3>Portal protegido de downloads</h3>
-            <p>Acesse instaladores do Vulcan Agent, checksums e builds homologadas em uma área autenticada.</p>
+            <div class="section-title-small">Arquiteturas dos agentes</div>
+            <h2 class="bp-section-title" id="architecture-title">Cobertura por plataforma</h2>
           </div>
-          <a class="btn btn-primary" href="/business-products/portal/">Entrar no portal</a>
+          <p class="bp-section-text">Use esta visão para validar a arquitetura antes do rollout. A homologação final depende também da versão do sistema operacional indicada nas matrizes abaixo.</p>
+        </div>
+        <div class="bp-architecture-grid" role="list" aria-label="Arquiteturas homologadas e restritas">
+          <article class="bp-architecture-item is-supported" role="listitem">
+            <div class="bp-architecture-platform">
+              <span class="bp-os-logo bp-os-windows" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 4.1 10.1 3v8.1H2zm9.9-1.4L22 1.3v9.8h-10.1zM2 12.9h8.1V21L2 19.9zm9.9 0H22v9.8l-10.1-1.4z"/></svg></span>
+              <span>Windows</span>
+            </div>
+            <strong>Cliente x86/WOW64 · Server x64</strong>
+            <p>Arquiteturas homologadas para Windows 11 e Windows Server suportados.</p>
+          </article>
+          <article class="bp-architecture-item is-supported" role="listitem">
+            <div class="bp-architecture-platform">
+              <span class="bp-os-logo bp-os-linux" aria-hidden="true">L</span>
+              <span>Linux</span>
+            </div>
+            <strong>x86_64 / AMD64</strong>
+            <p>Arquitetura homologada em distribuições com glibc e systemd.</p>
+          </article>
+          <article class="bp-architecture-item is-restricted" role="listitem">
+            <div class="bp-architecture-platform">
+              <span class="bp-architecture-symbol" aria-hidden="true">×</span>
+              <span>Fora do escopo</span>
+            </div>
+            <strong>ARM64 · ARMv7 · Linux i386</strong>
+            <p>Arquiteturas não homologadas para implantação em produção nesta release.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -262,16 +256,16 @@
           <p class="bp-support-revision">Revisado em 7 nov 2026</p>
         </div>
 
-        <div class="bp-package-strip" aria-label="Pacotes do agente para Windows">
+        <div class="bp-package-strip" aria-label="Arquiteturas do agente para Windows">
           <div>
             <span class="bp-package-label">Windows cliente</span>
-            <strong>vulcan-agent-windows.msi</strong>
-            <p>Pacote x86, compatível com WOW64.</p>
+            <strong>x86 / WOW64</strong>
+            <p>Agente x86 homologado em Windows 11 x64 por meio da camada WOW64.</p>
           </div>
           <div>
             <span class="bp-package-label">Windows Server</span>
-            <strong>vulcan-agent-windows-server-x64.msi</strong>
-            <p>Pacote x64 para produtos Server; inclui sensor windows-amd64.</p>
+            <strong>x64 / AMD64</strong>
+            <p>Windows Server com instalação completa ou Server Core.</p>
           </div>
         </div>
 
@@ -310,16 +304,16 @@
             <p class="bp-support-revision">Revisado em 7 nov 2026</p>
           </div>
 
-          <div class="bp-package-strip" aria-label="Pacotes do agente para Linux">
+          <div class="bp-package-strip" aria-label="Arquiteturas do agente para Linux">
             <div>
               <span class="bp-package-label">Debian e Ubuntu</span>
-              <strong>vulcan-agent-linux-amd64.deb</strong>
-              <p>amd64/x86_64 · systemd, com scripts de compatibilidade SysV quando presentes.</p>
+              <strong>AMD64 / x86_64</strong>
+              <p>glibc e systemd, com scripts de compatibilidade SysV quando presentes.</p>
             </div>
             <div>
               <span class="bp-package-label">RHEL e derivados</span>
-              <strong>vulcan-agent-linux-x86_64.rpm</strong>
-              <p>x86_64 · systemd, com scripts de compatibilidade SysV quando presentes.</p>
+              <strong>x86_64 / AMD64</strong>
+              <p>glibc e systemd, com scripts de compatibilidade SysV quando presentes.</p>
             </div>
           </div>
 

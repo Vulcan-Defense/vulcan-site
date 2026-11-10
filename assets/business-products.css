@@ -20,6 +20,19 @@
 .bp-hero-aside li{position:relative;padding-left:16px;color:#83939d;font-size:12px;line-height:1.55}
 .bp-hero-aside li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--bp-violet)}
 
+.bp-architecture{padding:52px 0 64px;border-top:1px solid var(--line);background:linear-gradient(180deg,rgba(167,139,250,.035),transparent)}
+.bp-architecture-head{display:grid;grid-template-columns:minmax(0,.8fr) minmax(340px,1.2fr);gap:clamp(24px,6vw,72px);align-items:end;margin-bottom:28px}
+.bp-architecture-head .bp-section-text{margin:0}
+.bp-architecture-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden;background:rgba(5,15,22,.72)}
+.bp-architecture-item{position:relative;min-height:190px;padding:24px 24px 22px}
+.bp-architecture-item+ .bp-architecture-item{border-left:1px solid rgba(255,255,255,.09)}
+.bp-architecture-item::before{content:"";position:absolute;inset:0 auto 0 0;width:2px;background:rgba(126,226,168,.7)}
+.bp-architecture-item.is-restricted::before{background:rgba(244,114,128,.68)}
+.bp-architecture-platform{display:flex;align-items:center;gap:11px;color:#c8d8de;font-size:12px;font-weight:800}
+.bp-architecture-item strong{display:block;margin-top:24px;color:#f0f9fb;font-size:clamp(1.1rem,2vw,1.35rem);letter-spacing:-.02em}
+.bp-architecture-item p{margin:10px 0 0;color:#8799a3;font-size:12px;line-height:1.65}
+.bp-architecture-symbol{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:rgba(244,114,128,.1);color:#e8a6ae;font-size:20px;font-weight:500}
+
 .bp-catalog{padding:64px 0 88px;border-top:1px solid var(--line)}
 .bp-section-head{margin-bottom:28px}
 .bp-section-title{margin-top:10px;font-size:clamp(1.65rem,3.2vw,2.35rem);letter-spacing:-.03em;font-weight:900}
@@ -114,5 +127,6 @@
 .bp-back{display:inline-flex;align-items:center;gap:8px;margin-bottom:8px;color:#8d9ca6;font-size:12px;font-weight:700;text-decoration:none}
 .bp-back:hover{color:var(--bp-cyan)}
 
-@media(max-width:980px){.bp-hero-grid,.bp-product-grid,.bp-support-notes,.secure-login-grid,.secure-package-grid{grid-template-columns:1fr}.bp-support-head{align-items:flex-start;flex-direction:column;gap:10px}}
+@media(max-width:980px){.bp-hero-grid,.bp-product-grid,.bp-support-notes,.secure-login-grid,.secure-package-grid,.bp-architecture-head{grid-template-columns:1fr}.bp-support-head{align-items:flex-start;flex-direction:column;gap:10px}.bp-architecture-head .bp-section-text{margin-top:0}}
+@media(max-width:760px){.bp-architecture-grid{grid-template-columns:1fr}.bp-architecture-item{min-height:0}.bp-architecture-item+ .bp-architecture-item{border-left:0;border-top:1px solid rgba(255,255,255,.09)}}
 @media(max-width:700px){.bp-hero{padding-top:52px}.bp-package-strip{grid-template-columns:1fr}.bp-package-strip>div+div{border-left:0;border-top:1px solid rgba(255,255,255,.08)}.bp-client-portal,.secure-portal-head,.secure-package-intro{align-items:flex-start;flex-direction:column}.bp-support-table-wrap{overflow:visible;background:transparent;border:0}.bp-support-table,.bp-support-table tbody,.bp-support-table tr,.bp-support-table td{display:block;min-width:0;width:auto}.bp-support-table thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.bp-support-table tbody{display:grid;gap:10px}.bp-support-table tbody tr{padding:15px 16px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(5,15,22,.68)}.bp-support-table th,.bp-support-table td{padding:0;border:0}.bp-support-table td{display:grid;grid-template-columns:102px minmax(0,1fr);gap:12px;margin-top:10px;align-items:start;font-size:12px}.bp-support-table td::before{color:#738792;font-size:9px;font-weight:850;letter-spacing:.1em;text-transform:uppercase}.bp-support-table td:first-child{display:block;width:auto;margin-top:0;font-size:14px}.bp-support-table--windows td:nth-child(2)::before{content:"Estado"}.bp-support-table--windows td:nth-child(3)::before{content:"Escopo"}.bp-support-table--linux td:nth-child(2)::before{content:"Versões"}.bp-support-table--linux td:nth-child(3)::before{content:"Estado"}.bp-support-table--linux td:nth-child(4)::before{content:"Escopo"}.bp-support-table tbody tr:hover{background:rgba(5,15,22,.68)}}
