@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Podcast sobre drones, guerra cibernética e Inteligência Artificial</title>
+  <desc id="desc">Capa de podcast com microfone, ondas de áudio e silhueta de drone.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#26173e"/><stop offset=".55" stop-color="#0d2331"/><stop offset="1" stop-color="#071018"/></linearGradient></defs>
+  <rect width="1200" height="675" fill="url(#bg)"/><g stroke="#b783ff" stroke-opacity=".4" stroke-width="7"><path d="M640 110v460M685 190v300M730 155v370M775 230v220M820 175v330M865 110v460M910 210v260M955 160v360M1000 235v210M1045 190v300"/></g>
+  <g transform="translate(920 180)" fill="none" stroke="#67e8f9" stroke-width="8"><path d="M-120 30h240M-60 30l-75-65M60 30l75-65M-105-35h-65M105-35h65"/><rect x="-42" y="0" width="84" height="58" rx="16"/><circle cx="-170" cy="-35" r="20"/><circle cx="170" cy="-35" r="20"/></g>
+  <rect x="75" y="94" width="74" height="106" rx="37" fill="none" stroke="#f6c85f" stroke-width="10"/><path d="M55 158v12a57 57 0 0 0 114 0v-12M112 227v48M75 275h74" fill="none" stroke="#f6c85f" stroke-width="10" stroke-linecap="round"/>
+  <text x="72" y="340" fill="#fff" font-family="Arial, sans-serif" font-size="58" font-weight="800"><tspan x="72">Drones e guerra</tspan><tspan x="72" dy="68">cibernética</tspan></text>
+  <text x="72" y="510" fill="#b8cad1" font-family="Arial, sans-serif" font-size="27">Podcast Falando de Fraudes</text><text x="72" y="575" fill="#d8b8ff" font-family="Arial, sans-serif" font-size="22" font-weight="700">IA · SINAIS · SOFTWARE · DEFESA</text>
+</svg>

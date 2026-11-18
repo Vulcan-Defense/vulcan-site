@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Mobilização de competências para a Defesa Nacional</title>
+  <desc id="desc">Capa editorial em azul com linhas conectando capacidades estratégicas.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#123c51"/><stop offset="1" stop-color="#07131c"/></linearGradient><radialGradient id="glow"><stop stop-color="#67e8f9" stop-opacity=".38"/><stop offset="1" stop-color="#67e8f9" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1200" height="675" fill="url(#bg)"/><circle cx="930" cy="230" r="310" fill="url(#glow)"/>
+  <g fill="none" stroke="#8eeafb" stroke-opacity=".55" stroke-width="2"><path d="M710 118 914 208 1055 119M710 118 796 360 914 208 1055 119 1080 401 796 360 963 520 1080 401"/><circle cx="710" cy="118" r="8"/><circle cx="914" cy="208" r="8"/><circle cx="1055" cy="119" r="8"/><circle cx="796" cy="360" r="8"/><circle cx="1080" cy="401" r="8"/><circle cx="963" cy="520" r="8"/></g>
+  <text x="72" y="88" fill="#f6c85f" font-family="Arial, sans-serif" font-size="22" font-weight="700">OMPV · IMM · ECEME</text>
+  <text x="72" y="250" fill="#fff" font-family="Arial, sans-serif" font-size="58" font-weight="800"><tspan x="72">Mobilização de</tspan><tspan x="72" dy="70">competências</tspan></text>
+  <text x="72" y="430" fill="#a9c3cc" font-family="Arial, sans-serif" font-size="27">Defesa nacional · capacidades críticas · soberania</text>
+  <rect x="72" y="535" width="290" height="48" rx="24" fill="#67e8f9" fill-opacity=".12" stroke="#67e8f9" stroke-opacity=".4"/><text x="102" y="567" fill="#bdf6ff" font-family="Arial, sans-serif" font-size="20" font-weight="700">PUBLICAÇÃO ESTRATÉGICA</text>
+</svg>

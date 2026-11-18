@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Análise sobre Governança de Inteligência Artificial</title>
+  <desc id="desc">Capa de matéria editorial com documento e matriz de decisão.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3b321d"/><stop offset=".55" stop-color="#14252b"/><stop offset="1" stop-color="#071018"/></linearGradient></defs>
+  <rect width="1200" height="675" fill="url(#bg)"/><g transform="translate(840 92)"><rect width="285" height="450" rx="18" fill="#edf3f4"/><path d="M35 74h215M35 119h160M35 206h215M35 250h215M35 294h140" stroke="#6b7f87" stroke-width="12" stroke-linecap="round"/><g transform="translate(55 355)" fill="none" stroke="#24738a" stroke-width="9"><circle r="42"/><path d="m-19 1 14 15 28-35"/></g><text x="120" y="370" fill="#172b35" font-family="Arial, sans-serif" font-size="21" font-weight="700">EVIDÊNCIA</text></g>
+  <text x="72" y="88" fill="#f6c85f" font-family="Arial, sans-serif" font-size="22" font-weight="700">ANÁLISE EDITORIAL · IMARA</text>
+  <text x="72" y="250" fill="#fff" font-family="Arial, sans-serif" font-size="58" font-weight="800"><tspan x="72">Governança</tspan><tspan x="72" dy="70">de IA</tspan></text>
+  <text x="72" y="430" fill="#b4c4ca" font-family="Arial, sans-serif" font-size="27"><tspan x="72">O que vem antes</tspan><tspan x="72" dy="38">da adoção em escala</tspan></text>
+  <text x="72" y="575" fill="#83deee" font-family="Arial, sans-serif" font-size="22" font-weight="700">RISCO · PRESTAÇÃO DE CONTAS · DECISÃO</text>
+</svg>

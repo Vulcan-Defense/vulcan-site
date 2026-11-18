@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Engenharia da confiança e governança de Inteligência Artificial</title>
+  <desc id="desc">Capa editorial sobre governança e controle responsável da IA.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3c173c"/><stop offset=".5" stop-color="#142a3a"/><stop offset="1" stop-color="#071018"/></linearGradient></defs>
+  <rect width="1200" height="675" fill="url(#bg)"/><g transform="translate(940 325)" fill="none"><circle r="210" stroke="#e18cff" stroke-opacity=".25"/><circle r="145" stroke="#67e8f9" stroke-opacity=".4" stroke-width="2"/><path d="M-95 18c0-80 190-80 190 0v96h-190z" stroke="#f6c85f" stroke-width="12"/><path d="M-58-8v-55a58 58 0 0 1 116 0v55" stroke="#f6c85f" stroke-width="12"/><circle cy="60" r="15" fill="#f6c85f"/></g>
+  <text x="72" y="88" fill="#e7a3ff" font-family="Arial, sans-serif" font-size="22" font-weight="700">EDUCACYBER MAGAZINE · 3ª EDIÇÃO</text>
+  <text x="72" y="250" fill="#fff" font-family="Arial, sans-serif" font-size="58" font-weight="800"><tspan x="72">Engenharia</tspan><tspan x="72" dy="70">da confiança</tspan></text>
+  <text x="72" y="430" fill="#b7c7ce" font-family="Arial, sans-serif" font-size="27">Governança antes da aceleração</text>
+  <path d="M72 520h430" stroke="#67e8f9" stroke-width="3"/><text x="72" y="570" fill="#f6c85f" font-family="Arial, sans-serif" font-size="22" font-weight="700">RESPONSABILIDADE · RASTREABILIDADE · CONTROLE</text>
+</svg>
