@@ -12,8 +12,9 @@
   <link rel="canonical" href="https://vulcandefense.com.br/sala-de-imprensa.html" />
   <link rel="icon" href="assets/favicon.ico" />
   <link rel="stylesheet" href="styles.css?v=20261029d" />
-  <link rel="stylesheet" href="assets/sala-imprensa-v3.css" />
+  <link rel="stylesheet" href="assets/sala-imprensa-v4.css" />
   <script src="site.js?v=20261029d" defer></script>
+  <script src="assets/sala-imprensa-lightbox.js" defer></script>
 </head>
 <body class="press-page">
   <div class="grid-overlay"></div>
@@ -144,7 +145,9 @@
         </div>
         <article class="press-feature-story">
           <figure class="press-feature-media">
-            <img src="assets/press-firjan-pdi-2026.png" alt="Reunião de PD&amp;I na Firjan SENAI SESI Tecnologia sobre simulador da viatura blindada Guarani" width="960" height="540" />
+            <button class="press-image-button" type="button" data-press-lightbox data-src="assets/press-firjan-pdi-2026.png" data-caption="Agenda de PD&amp;I na Firjan SENAI SESI Tecnologia" aria-label="Ampliar foto da agenda de PD&amp;I">
+              <img src="assets/press-firjan-pdi-2026.png" alt="Reunião de PD&amp;I na Firjan SENAI SESI Tecnologia sobre simulador da viatura blindada Guarani" width="960" height="540" />
+            </button>
             <figcaption><strong>Prévia da publicação:</strong> encontro na Firjan SENAI SESI Tecnologia com empresas, academia (UFF) e ecossistema de inovação — discussão de soluções em PD&amp;I para Defesa e Segurança Pública, incluindo simuladores e tecnologias aplicadas ao setor.</figcaption>
           </figure>
           <div class="press-feature-body">
@@ -165,7 +168,9 @@
         <article class="press-egc-feature" aria-labelledby="egc-title">
           <div class="press-egc-lead">
             <figure class="press-egc-hero-media">
-              <img src="assets/egc8-hub-rio-10.jpeg" alt="Participantes do Exercício Guardião Cibernético 8.0 reunidos no Hub Rio" width="1280" height="853" loading="lazy" />
+              <button class="press-image-button" type="button" data-press-lightbox data-src="assets/egc8-hub-rio-10.jpeg" data-caption="Participantes do Exercício Guardião Cibernético 8.0 no Hub Rio" aria-label="Ampliar foto principal do Guardião Cibernético 8.0">
+                <img src="assets/egc8-hub-rio-10.jpeg" alt="Participantes do Exercício Guardião Cibernético 8.0 reunidos no Hub Rio" width="1280" height="853" loading="lazy" />
+              </button>
               <figcaption>Hub Rio · Exercício Guardião Cibernético 8.0</figcaption>
             </figure>
             <div class="press-egc-copy">
@@ -190,23 +195,30 @@
             </div>
           </div>
 
-          <div class="press-egc-gallery" aria-label="Registros fotográficos do Guardião Cibernético 8.0 no Hub Rio">
-            <a href="assets/egc8-hub-rio-01.jpeg" target="_blank" rel="noopener noreferrer">
+          <div class="press-egc-gallery-head">
+            <p>Registros do Hub Rio <span>Selecione uma foto para ampliar</span></p>
+            <div class="press-egc-gallery-controls" aria-label="Controles da galeria">
+              <button type="button" data-egc-scroll="prev" aria-label="Ver fotos anteriores">‹</button>
+              <button type="button" data-egc-scroll="next" aria-label="Ver próximas fotos">›</button>
+            </div>
+          </div>
+          <div class="press-egc-gallery" data-egc-gallery aria-label="Registros fotográficos do Guardião Cibernético 8.0 no Hub Rio">
+            <button type="button" data-press-lightbox data-src="assets/egc8-hub-rio-01.jpeg" data-caption="Operação integrada durante o Guardião Cibernético 8.0">
               <img src="assets/egc8-hub-rio-01.jpeg" alt="Sala de operações do Guardião Cibernético 8.0 com participantes e militares" width="1600" height="720" loading="lazy" />
               <span>Operação integrada</span>
-            </a>
-            <a href="assets/egc8-hub-rio-03.jpeg" target="_blank" rel="noopener noreferrer">
+            </button>
+            <button type="button" data-press-lightbox data-src="assets/egc8-hub-rio-03.jpeg" data-caption="Representantes da Vulcan Defense no Guardião Cibernético 8.0">
               <img src="assets/egc8-hub-rio-03.jpeg" alt="Representantes da Vulcan Defense no Guardião Cibernético 8.0" width="1600" height="720" loading="lazy" />
               <span>Vulcan Defense</span>
-            </a>
-            <a href="assets/egc8-hub-rio-04.jpeg" target="_blank" rel="noopener noreferrer">
+            </button>
+            <button type="button" data-press-lightbox data-src="assets/egc8-hub-rio-04.jpeg" data-caption="Cooperação técnica com representantes do Exército Brasileiro">
               <img src="assets/egc8-hub-rio-04.jpeg" alt="Equipe técnica em conversa com representantes do Exército Brasileiro" width="1600" height="720" loading="lazy" />
               <span>Cooperação técnica</span>
-            </a>
-            <a href="assets/egc8-hub-rio-08.jpeg" target="_blank" rel="noopener noreferrer">
+            </button>
+            <button type="button" data-press-lightbox data-src="assets/egc8-hub-rio-08.jpeg" data-caption="Identificação do Exercício Guardião Cibernético 8.0 no Hub Rio">
               <img src="assets/egc8-hub-rio-08.jpeg" alt="Banner do Exercício Guardião Cibernético 8.0 no Hub Rio" width="720" height="1280" loading="lazy" />
               <span>EGC 8.0</span>
-            </a>
+            </button>
           </div>
         </article>
       </div>
@@ -370,6 +382,21 @@
         </div>
       </div>
     </section>
+
+    <div class="press-lightbox" id="press-lightbox" role="dialog" aria-modal="true" aria-labelledby="press-lightbox-caption" hidden>
+      <div class="press-lightbox-shell">
+        <button class="press-lightbox-close" type="button" data-lightbox-close aria-label="Fechar imagem ampliada">×</button>
+        <button class="press-lightbox-nav is-prev" type="button" data-lightbox-prev aria-label="Imagem anterior">‹</button>
+        <figure>
+          <img src="" alt="" data-lightbox-image />
+          <figcaption>
+            <span id="press-lightbox-caption" data-lightbox-caption></span>
+            <span data-lightbox-counter aria-live="polite"></span>
+          </figcaption>
+        </figure>
+        <button class="press-lightbox-nav is-next" type="button" data-lightbox-next aria-label="Próxima imagem">›</button>
+      </div>
+    </div>
   </main>
 
   <footer>
