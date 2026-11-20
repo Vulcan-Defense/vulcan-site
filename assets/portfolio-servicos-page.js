@@ -7,36 +7,44 @@ document.addEventListener("DOMContentLoaded", function(){
         window.print();
         return;
       }
-      var el = document.getElementById("portfolio-content");
+      var el = document.getElementById("commercial-pdf-document");
+      if (!el) return;
       var overlay = document.querySelector(".grid-overlay");
       if (overlay) overlay.style.visibility = "hidden";
       document.body.classList.add("pdf-export");
+      el.setAttribute("aria-hidden", "false");
       btn.disabled = true;
-      btn.textContent = "Gerando PDF...";
-      el.scrollIntoView({ behavior: "instant", block: "start" });
+      btn.textContent = "Preparando documento...";
+      var now = new Date();
+      var monthLabel = new Intl.DateTimeFormat("pt-BR", { month: "long", year: "numeric" }).format(now);
+      el.querySelectorAll("[data-pdf-date]").forEach(function(node) {
+        node.textContent = monthLabel.charAt(0).toUpperCase() + monthLabel.slice(1);
+      });
       var opt = {
-        margin: 8,
-        filename: "Vulcan-Defense-Portfolio-Servicos.pdf",
-        image: { type: "jpeg", quality: 0.92 },
-        html2canvas: { scale: 1, useCORS: true, letterRendering: true, backgroundColor: "#ffffff" },
-        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+        margin: 0,
+        filename: "Vulcan-Defense-Servicos-Gerenciados-" + now.toISOString().slice(0, 7) + ".pdf",
+        image: { type: "jpeg", quality: 0.96 },
+        html2canvas: { scale: 1.35, useCORS: true, letterRendering: true, backgroundColor: "#ffffff", windowWidth: 794 },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait", compress: true },
+        pagebreak: { mode: ["css", "legacy"] }
       };
+      function cleanup() {
+        document.body.classList.remove("pdf-export");
+        el.setAttribute("aria-hidden", "true");
+        btn.disabled = false;
+        btn.textContent = "Baixar documento comercial (PDF)";
+        if (overlay) overlay.style.visibility = "";
+      }
       setTimeout(function() {
         html2pdf().set(opt).from(el).save()
           .then(function() {
-            document.body.classList.remove("pdf-export");
-            btn.disabled = false;
-            btn.textContent = "Baixar PDF";
-            if (overlay) overlay.style.visibility = "";
+            cleanup();
           })
           .catch(function() {
-            document.body.classList.remove("pdf-export");
-            btn.disabled = false;
-            btn.textContent = "Baixar PDF";
-            if (overlay) overlay.style.visibility = "";
+            cleanup();
             window.print();
           });
-      }, 400);
+      }, 600);
     });
   }
 
