@@ -10,8 +10,8 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
   <meta name="theme-color" content="#071018" />
-  <title>Endpoint Protection e SIEM | Vulcan Defense</title>
-  <meta name="description" content="Endpoint Protection integrado a SIEM, analytics e resposta para ambientes corporativos. Detecção contextual, contenção e apoio à operação." />
+  <title>Cybershield NextGen — Endpoint Protection e SIEM | Vulcan Defense</title>
+  <meta name="description" content="Cybershield NextGen é a plataforma própria da Vulcan Defense para Endpoint Protection e SIEM: EDR/XDR, correlação de telemetria, detecção contextual e resposta coordenada." />
   <link rel="stylesheet" href="styles.css?v=20261029d" />
   <link rel="stylesheet" href="assets/endpoint-siem.css" />
   <script src="site.js?v=20261029d" defer></script>
@@ -47,8 +47,8 @@
                   <span class="nav-card-desc">Console unificado de observabilidade, detecção e resposta.</span>
                 </a>
                 <a class="nav-card" href="endpoint-protection-siem.html">
-                  <span class="nav-card-title">Endpoint Protection e SIEM</span>
-                  <span class="nav-card-desc">EDR/XDR e SIEM com telemetria correlacionada.</span>
+                  <span class="nav-card-title">Cybershield NextGen</span>
+                  <span class="nav-card-desc">Plataforma própria de EDR/XDR e SIEM com telemetria correlacionada.</span>
                 </a>
                 <a class="nav-card" href="siem-ot.html">
                   <span class="nav-card-title">Vulcan-SIEM OT</span>
@@ -199,21 +199,44 @@
     <section class="ep-hero">
       <div class="container ep-hero-grid">
         <div>
-          <div class="ep-eyebrow">Endpoint + SIEM + resposta</div>
-          <h1 class="ep-title">Detecte cedo. <span>Responda com contexto.</span></h1>
-          <p class="ep-lead">Integramos proteção de endpoint e inteligência do SIEM para transformar telemetria dispersa em incidentes priorizados, evidência acionável e contenção coordenada.</p>
-          <div class="ep-actions"><a class="btn btn-primary" href="contato.html">Avaliar meu ambiente</a><a class="btn btn-secondary" href="#telemetria">Explorar telemetria</a></div>
-          <div class="ep-proof" aria-label="Benefícios do serviço"><span>EDR/XDR integrado</span><span>Correlação multi-fonte</span><span>Playbooks de contenção</span></div>
+          <div class="ep-eyebrow">Plataforma própria Vulcan Defense</div>
+          <p class="ep-product-kicker">Cybershield <span>NextGen</span></p>
+          <h1 class="ep-title">Endpoint Protection e SIEM <span>em uma única plataforma.</span></h1>
+          <p class="ep-lead">Unifique EDR/XDR e SIEM com telemetria correlacionada para detectar ameaças com contexto, priorizar o que importa e coordenar a resposta do endpoint à operação.</p>
+          <div class="ep-actions">
+            <a class="btn btn-primary" href="contato.html?servico=cybershield-nextgen">Solicitar demonstração</a>
+            <a class="btn btn-secondary" href="#capacidades">Ver capacidades</a>
+          </div>
+          <div class="ep-proof" aria-label="Destaques da plataforma">
+            <span>Plataforma própria</span>
+            <span>EDR/XDR + SIEM nativo</span>
+            <span>Telemetria correlacionada</span>
+            <span>Resposta coordenada</span>
+          </div>
+          <div class="ep-hero-metrics" aria-label="Resumo da plataforma">
+            <div class="ep-hero-metric"><strong>EDR/XDR</strong><span>Proteção e visibilidade de endpoint</span></div>
+            <div class="ep-hero-metric"><strong>SIEM</strong><span>Correlação e contexto multi-fonte</span></div>
+            <div class="ep-hero-metric"><strong>Resposta</strong><span>Playbooks e contenção orientada</span></div>
+          </div>
         </div>
 
-        <div class="ep-console" aria-label="Simulação ilustrativa de resposta a incidentes">
-          <div class="ep-console-head"><div class="ep-console-title">Incident response cockpit</div><div class="ep-status">Monitorando</div></div>
+        <div class="ep-console" aria-label="Simulação ilustrativa do Cybershield NextGen">
+          <div class="ep-console-head">
+            <div>
+              <div class="ep-console-kicker">Cockpit Cybershield NextGen</div>
+              <div class="ep-console-title">Detecção, correlação e resposta</div>
+            </div>
+            <div class="ep-status">Monitorando</div>
+          </div>
           <div class="ep-scenario-tabs" aria-label="Selecionar cenário de ameaça">
-            <button class="ep-scenario is-active" type="button" data-scenario="ransomware" aria-pressed="true">Ransomware</button><button class="ep-scenario" type="button" data-scenario="identity" aria-pressed="false">Identidade</button><button class="ep-scenario" type="button" data-scenario="malware" aria-pressed="false">Malware</button>
+            <button class="ep-scenario is-active" type="button" data-scenario="ransomware" aria-pressed="true">Ransomware</button>
+            <button class="ep-scenario" type="button" data-scenario="identity" aria-pressed="false">Identidade</button>
+            <button class="ep-scenario" type="button" data-scenario="malware" aria-pressed="false">Malware</button>
           </div>
           <div class="ep-alert">
             <div class="ep-alert-top"><span class="ep-alert-severity" data-alert-severity>Crítico</span><span class="ep-alert-id" data-alert-id>INC-4821</span></div>
-            <h3 data-alert-title>Comportamento de ransomware interrompido</h3><p data-alert-description>Sequência anômala de criptografia detectada no endpoint FIN-042.</p>
+            <h3 data-alert-title>Comportamento de ransomware interrompido</h3>
+            <p data-alert-description>Sequência anômala de criptografia detectada no endpoint FIN-042 e correlacionada no SIEM.</p>
           </div>
           <div class="ep-timeline">
             <div class="ep-timeline-item" data-timeline-step><i></i><strong>Comportamento correlacionado</strong><time>00:00</time></div>
@@ -228,88 +251,369 @@
     <section class="ep-observability" id="telemetria">
       <div class="container">
         <div class="ep-section-head">
-          <div class="ep-section-copy"><div class="section-title-small">Observabilidade de segurança</div><h2 class="ep-section-title">Do volume de eventos ao sinal priorizado</h2><p class="ep-section-text">Alterne os indicadores e explore o gráfico para entender como telemetria de endpoint, identidade e rede pode ser consolidada no SIEM.</p></div>
-          <p class="ep-note">Dados demonstrativos. Cobertura, volume e resultados dependem do ambiente, das ferramentas e do escopo contratado.</p>
+          <div class="ep-section-copy">
+            <div class="section-title-small">Telemetria correlacionada</div>
+            <h2 class="ep-section-title">Do evento bruto ao sinal que pede ação</h2>
+            <p class="ep-section-text">O Cybershield NextGen correlaciona sinais de endpoint, identidade, rede e aplicações para reduzir ruído, dar contexto ao analista e acelerar a resposta.</p>
+          </div>
+          <p class="ep-note">Visualização demonstrativa. Os resultados variam conforme ambiente, fontes integradas e escopo operacional.</p>
         </div>
         <div class="ep-kpis">
-          <div class="ep-kpi"><span class="ep-kpi-label">Eventos processados</span><strong data-ep-counter="8.4" data-decimals="1" data-suffix="M">0M</strong></div>
-          <div class="ep-kpi"><span class="ep-kpi-label">Endpoints cobertos</span><strong data-ep-counter="2940">0</strong></div>
-          <div class="ep-kpi"><span class="ep-kpi-label">Ações automatizadas</span><strong data-ep-counter="904" data-suffix="k">0</strong></div>
-          <div class="ep-kpi"><span class="ep-kpi-label">Redução de MTTR</span><strong class="good" data-ep-counter="37" data-prefix="−" data-suffix="%">0%</strong></div>
+          <div class="ep-kpi"><span class="ep-kpi-label">Eventos ingeridos / 24h</span><strong data-ep-counter="1.28" data-decimals="2" data-suffix="M">0M</strong></div>
+          <div class="ep-kpi"><span class="ep-kpi-label">Alertas correlacionados</span><strong data-ep-counter="342">0</strong></div>
+          <div class="ep-kpi"><span class="ep-kpi-label">Incidentes prioritários</span><strong data-ep-counter="12">0</strong></div>
+          <div class="ep-kpi"><span class="ep-kpi-label">MTTR médio</span><strong class="good" data-ep-counter="14" data-suffix=" min">0 min</strong></div>
         </div>
         <div class="ep-chart-grid">
           <article class="ep-chart-card">
-            <div class="ep-chart-top"><div><div class="ep-chart-kicker">Últimas 24 horas</div><h3 class="ep-chart-title">Pipeline de detecção</h3></div><div class="ep-chart-controls" aria-label="Selecionar indicador"><button class="ep-control is-active" type="button" data-ep-metric="events">Eventos</button><button class="ep-control" type="button" data-ep-metric="alerts">Alertas</button><button class="ep-control" type="button" data-ep-metric="blocked">Bloqueios</button></div></div>
-            <div class="ep-chart-shell"><canvas data-ep-line role="img" aria-label="Pipeline de detecção nas últimas 24 horas"></canvas><div class="ep-chart-tooltip" aria-hidden="true"></div></div>
+            <div class="ep-chart-top">
+              <div>
+                <div class="ep-chart-kicker">Últimas 24 horas</div>
+                <h3 class="ep-chart-title">Pipeline de detecção</h3>
+              </div>
+              <div class="ep-chart-controls" aria-label="Selecionar indicador">
+                <button class="ep-control is-active" type="button" data-ep-metric="events">Eventos</button>
+                <button class="ep-control" type="button" data-ep-metric="alerts">Alertas</button>
+                <button class="ep-control" type="button" data-ep-metric="blocked">Contenções</button>
+              </div>
+            </div>
+            <div class="ep-chart-shell">
+              <canvas data-ep-line role="img" aria-label="Pipeline de detecção nas últimas 24 horas"></canvas>
+              <div class="ep-chart-tooltip" aria-hidden="true"></div>
+            </div>
+            <div class="ep-chart-legend" aria-hidden="true">
+              <span><i style="background:#f6c85f"></i>Eventos ingeridos</span>
+              <span><i style="background:#5edce7"></i>Alertas correlacionados</span>
+              <span><i style="background:#7ee2a8"></i>Contenções automatizadas</span>
+            </div>
           </article>
           <article class="ep-chart-card">
-            <div class="ep-chart-top"><div><div class="ep-chart-kicker">Priorização</div><h3 class="ep-chart-title">Severidade dos sinais</h3></div></div>
-            <div class="ep-donut-wrap"><canvas data-ep-donut role="img" aria-label="Distribuição de severidade"></canvas><div class="ep-donut-center"><strong>100</strong><span>sinais avaliados</span></div></div>
-            <div class="ep-severity-legend"><span><i style="background:#ff7b7b"></i>Crítica · 12%</span><span><i style="background:#f6c85f"></i>Alta · 26%</span><span><i style="background:#5edce7"></i>Média · 38%</span><span><i style="background:#7b8b96"></i>Baixa · 24%</span></div>
+            <div class="ep-chart-top">
+              <div>
+                <div class="ep-chart-kicker">Priorização de alertas</div>
+                <h3 class="ep-chart-title">Severidade dos sinais</h3>
+              </div>
+              <div class="ep-chart-badge">342 alertas / 24h</div>
+            </div>
+            <div class="ep-donut-wrap">
+              <canvas data-ep-donut role="img" aria-label="Distribuição de severidade dos alertas"></canvas>
+              <div class="ep-donut-center"><strong data-donut-total>342</strong><span>alertas correlacionados</span></div>
+            </div>
+            <div class="ep-severity-legend" data-severity-legend>
+              <span><i style="background:#ff7b7b"></i><b>Crítica</b><small>12 · 4%</small></span>
+              <span><i style="background:#f6c85f"></i><b>Alta</b><small>41 · 12%</small></span>
+              <span><i style="background:#5edce7"></i><b>Média</b><small>116 · 34%</small></span>
+              <span><i style="background:#7b8b96"></i><b>Baixa</b><small>173 · 50%</small></span>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="ep-layers">
+    <section class="ep-layers" id="capacidades">
       <div class="container">
-        <div class="ep-section-copy"><div class="section-title-small">Defesa em camadas</div><h2 class="ep-section-title">Cobertura que conecta tecnologia e operação</h2><p class="ep-section-text">O valor não está apenas na ferramenta: está na qualidade da telemetria, nas regras, no contexto e na capacidade de resposta.</p></div>
+        <div class="ep-section-head ep-section-head--center">
+          <div class="ep-section-copy">
+            <div class="section-title-small">Capacidades da plataforma</div>
+            <h2 class="ep-section-title">Cybershield NextGen: proteção, correlação e resposta</h2>
+            <p class="ep-section-text">Uma plataforma própria construída para conectar telemetria de endpoint e inteligência SIEM no mesmo fluxo operacional — da detecção à contenção.</p>
+          </div>
+        </div>
         <div class="ep-layer-grid">
-          <article class="ep-layer"><span class="ep-layer-num">01 · ENDPOINT</span><h3>Proteção e telemetria</h3><p>Visibilidade de processo, arquivo, comportamento e atividade do host para investigar e conter ameaças.</p><ul><li>EDR/XDR e isolamento de host</li><li>Indicadores e comportamento anômalo</li><li>Inventário e postura do endpoint</li></ul></article>
-          <article class="ep-layer"><span class="ep-layer-num">02 · SIEM</span><h3>Correlação contextual</h3><p>Eventos de várias fontes enriquecidos e relacionados para reduzir ruído e formar incidentes acionáveis.</p><ul><li>Casos de uso alinhados ao risco</li><li>Identidade, rede, cloud e aplicações</li><li>Threat intelligence e evidências</li></ul></article>
-          <article class="ep-layer"><span class="ep-layer-num">03 · RESPOSTA</span><h3>Contenção coordenada</h3><p>Playbooks, integrações e procedimentos conectam o alerta às ações técnicas e à comunicação executiva.</p><ul><li>SOAR, APIs e automações autorizadas</li><li>RACI e critérios de escalonamento</li><li>Métricas de resposta e auditoria</li></ul></article>
+          <article class="ep-layer">
+            <span class="ep-layer-num">01 · ENDPOINT PROTECTION</span>
+            <h3>EDR/XDR com visibilidade profunda</h3>
+            <p>Monitore processos, arquivos, comportamento e atividade do host para detectar, investigar e conter ameaças no endpoint.</p>
+            <ul>
+              <li>Detecção comportamental e por indicadores</li>
+              <li>Isolamento de host e resposta no endpoint</li>
+              <li>Inventário, postura e contexto do ativo</li>
+            </ul>
+          </article>
+          <article class="ep-layer ep-layer--featured">
+            <span class="ep-layer-num">02 · SIEM + CORRELAÇÃO</span>
+            <h3>Telemetria correlacionada em tempo operacional</h3>
+            <p>Agregue e correlacione eventos de múltiplas fontes para transformar ruído em incidentes priorizados com evidência acionável.</p>
+            <ul>
+              <li>Correlação multi-fonte e enriquecimento</li>
+              <li>Identidade, rede, cloud e aplicações</li>
+              <li>Priorização por risco e impacto</li>
+            </ul>
+          </article>
+          <article class="ep-layer">
+            <span class="ep-layer-num">03 · RESPOSTA ORQUESTRADA</span>
+            <h3>Contenção com contexto e rastreabilidade</h3>
+            <p>Conecte alerta, investigação e ação com playbooks, integrações e trilha de auditoria para responder com velocidade e controle.</p>
+            <ul>
+              <li>Playbooks e automações autorizadas</li>
+              <li>Escalonamento com critérios claros</li>
+              <li>Evidências, métricas e auditoria</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
 
     <section class="ep-flow-section">
       <div class="container">
-        <div class="ep-section-copy"><div class="section-title-small">Jornada do incidente</div><h2 class="ep-section-title">Um fluxo claro do sinal à contenção</h2></div>
+        <div class="ep-section-copy">
+          <div class="section-title-small">Como funciona</div>
+          <h2 class="ep-section-title">Um fluxo operacional claro, do sinal à contenção</h2>
+          <p class="ep-section-text">O Cybershield NextGen organiza a operação em etapas simples para que o time saiba o que aconteceu, o que priorizar e como agir.</p>
+        </div>
         <div class="ep-flow">
-          <article class="ep-flow-step"><h3>Coletar</h3><p>Endpoint, identidade, rede, cloud e aplicações enviam telemetria relevante.</p></article>
-          <article class="ep-flow-step"><h3>Correlacionar</h3><p>O SIEM cruza sinais, contexto do ativo, IOC e comportamento observado.</p></article>
-          <article class="ep-flow-step"><h3>Priorizar</h3><p>Criticidade técnica e impacto ao negócio orientam triagem e escalonamento.</p></article>
-          <article class="ep-flow-step"><h3>Responder</h3><p>Playbooks coordenam contenção, evidência, comunicação e acompanhamento.</p></article>
+          <article class="ep-flow-step"><h3>Coletar</h3><p>Agentes e integrações captam telemetria de endpoint, identidade, rede, cloud e aplicações.</p></article>
+          <article class="ep-flow-step"><h3>Correlacionar</h3><p>O SIEM cruza sinais, contexto do ativo, indicadores e comportamento observado.</p></article>
+          <article class="ep-flow-step"><h3>Priorizar</h3><p>Risco técnico e impacto ao negócio orientam triagem, fila e escalonamento.</p></article>
+          <article class="ep-flow-step"><h3>Responder</h3><p>Playbooks coordenam contenção, evidência, comunicação e aprendizado contínuo.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ep-capabilities-extended" id="protecao-integrada">
+      <div class="container">
+        <div class="ep-section-head">
+          <div class="ep-section-copy">
+            <div class="section-title-small">Cobertura ampliada</div>
+            <h2 class="ep-section-title">Segurança da aplicação ao runtime, com IA e relatórios</h2>
+            <p class="ep-section-text">O Cybershield NextGen amplia a visibilidade além do endpoint, conectando análise de código, dependências, aplicações, containers e inteligência operacional em um único contexto.</p>
+          </div>
+        </div>
+        <div class="ep-capx-grid">
+          <article class="ep-capx-card">
+            <span class="ep-capx-tag">AppSec</span>
+            <h3>SCA</h3>
+            <p>Mapeie dependências e bibliotecas de terceiros para identificar vulnerabilidades conhecidas, licenças de risco e componentes desatualizados antes que cheguem à produção.</p>
+          </article>
+          <article class="ep-capx-card">
+            <span class="ep-capx-tag">AppSec</span>
+            <h3>SAST</h3>
+            <p>Analise código-fonte e padrões inseguros no ciclo de desenvolvimento para detectar falhas cedo, reduzir retrabalho e orientar correção com contexto técnico.</p>
+          </article>
+          <article class="ep-capx-card">
+            <span class="ep-capx-tag">AppSec</span>
+            <h3>DAST</h3>
+            <p>Teste aplicações em execução para identificar exposições reais, comportamentos inesperados e vulnerabilidades exploráveis na camada de runtime web.</p>
+          </article>
+          <article class="ep-capx-card">
+            <span class="ep-capx-tag">Cloud &amp; Runtime</span>
+            <h3>Docker</h3>
+            <p>Avalie imagens, configurações e runtime de containers para reduzir superfície de ataque, detectar misconfigurations e reforçar a segurança de workloads em Docker.</p>
+          </article>
+          <article class="ep-capx-card ep-capx-card--ai">
+            <span class="ep-capx-tag">Inteligência</span>
+            <h3>Proteções com IA</h3>
+            <p>Use IA para acelerar triagem, correlacionar sinais, priorizar riscos e sugerir próximos passos, mantendo rastreabilidade e controle humano nas decisões críticas.</p>
+          </article>
+          <article class="ep-capx-card">
+            <span class="ep-capx-tag">Gestão</span>
+            <h3>Relatórios</h3>
+            <p>Gere relatórios técnicos e executivos com evidências, tendências, status de exposição e indicadores de resposta para apoiar operação, gestão e auditoria.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ep-platform-scope" id="plataforma-completa">
+      <div class="container">
+        <div class="ep-section-head ep-section-head--center">
+          <div class="ep-section-copy">
+            <div class="section-title-small">Plataforma completa</div>
+            <h2 class="ep-section-title">Tudo o que o Cybershield NextGen entrega em uma única operação</h2>
+            <p class="ep-section-text">Da identidade à resposta, do endpoint ao OT: uma plataforma comercialmente pronta para visibilidade, proteção, conformidade e decisão executiva.</p>
+          </div>
+        </div>
+
+        <div class="ep-scope-grid">
+          <article class="ep-scope-card">
+            <div class="ep-scope-head">
+              <span class="ep-scope-num">01</span>
+              <div>
+                <p class="ep-scope-kicker">Fundação segura</p>
+                <h3>Acesso, identidade e governança</h3>
+              </div>
+            </div>
+            <p class="ep-scope-lead">Controle de acesso corporativo com trilha de auditoria e governança por organização.</p>
+            <ul class="ep-scope-list">
+              <li>OAuth2/JWT, refresh token, logout individual/global e gestão de sessões ativas.</li>
+              <li>MFA com TOTP, passkeys/FIDO2/Windows Hello e step-up para ações sensíveis.</li>
+              <li>RBAC completo: usuários, roles, perfis, menus, rules, policies e acesso efetivo.</li>
+              <li>SSO Azure AD/Entra ID e AD/LDAP, convites por e-mail e escopo multiempresa.</li>
+              <li>PAM/cofre para SSH/RDP, auditoria central e gestão controlada de segredos/.env.</li>
+            </ul>
+          </article>
+
+          <article class="ep-scope-card">
+            <div class="ep-scope-head">
+              <span class="ep-scope-num">02</span>
+              <div>
+                <p class="ep-scope-kicker">Visão executiva</p>
+                <h3>Painéis, SOC e inteligência operacional</h3>
+              </div>
+            </div>
+            <p class="ep-scope-lead">Dashboards para operação, gestão e diretoria com contexto em tempo real.</p>
+            <ul class="ep-scope-list">
+              <li>Dashboard SOC com KPIs, severidade, fila de alertas, MITRE, exposição CVE e maturidade.</li>
+              <li>Fleet Dashboard, SOC Infra, APM, mapa de ameaças e ambientes 3D/CPDs.</li>
+              <li>Abas Telão SOC, Analista, Crucix, MISP e Regras.</li>
+              <li>Notificações filtráveis, busca global, busca de menus e preferências de UI/idioma.</li>
+              <li>Exportações executivas em PDF e visão global por clientes autorizados.</li>
+            </ul>
+          </article>
+
+          <article class="ep-scope-card">
+            <div class="ep-scope-head">
+              <span class="ep-scope-num">03</span>
+              <div>
+                <p class="ep-scope-kicker">Detecção e resposta</p>
+                <h3>SIEM, SOAR e Threat Hunting</h3>
+              </div>
+            </div>
+            <p class="ep-scope-lead">Correlação, investigação e automação para reduzir tempo de detecção e resposta.</p>
+            <ul class="ep-scope-list">
+              <li>Console SIEM next-gen: visão, rede, agentes, alertas, firewalls e integrações.</li>
+              <li>Correlação de alertas, linha temporal, ativos críticos, regras top e chat IA sobre alertas.</li>
+              <li>Threat Hunting com análise IA, cópia de IOC, exportação CSV e relatório PDF.</li>
+              <li>SOAR com playbooks, gatilhos, aprovação dual, execuções e active response.</li>
+              <li>Log management, histórico de login, contenção de endpoints/IPs e status de integrações.</li>
+            </ul>
+          </article>
+
+          <article class="ep-scope-card">
+            <div class="ep-scope-head">
+              <span class="ep-scope-num">04</span>
+              <div>
+                <p class="ep-scope-kicker">Endpoint e blue team</p>
+                <h3>EDR, DLP, e-mail, cloud e resposta</h3>
+              </div>
+            </div>
+            <p class="ep-scope-lead">Proteção operacional da superfície corporativa com investigação e contenção.</p>
+            <ul class="ep-scope-list">
+              <li>Gestão de agentes EDR, FIM, quarentena/bloqueio por hash e comandos remotos.</li>
+              <li>Investigação e resposta com timeline, árvore de processos, forense e exportação PDF.</li>
+              <li>DLP com cobertura, políticas, scans, USB e liberação controlada de dispositivos.</li>
+              <li>Email security (M365/Google), CSPM, UEBA (A.8.16) e WAF/AppSec.</li>
+              <li>IT Hygiene com inventário, SCA, pacotes Syscollector e desinstalação controlada.</li>
+            </ul>
+          </article>
+
+          <article class="ep-scope-card">
+            <div class="ep-scope-head">
+              <span class="ep-scope-num">05</span>
+              <div>
+                <p class="ep-scope-kicker">Exposição e correção</p>
+                <h3>Vulnerabilidades, NDR e gestão de patches</h3>
+              </div>
+            </div>
+            <p class="ep-scope-lead">Priorize o que importa, valide correções e acompanhe risco contínuo.</p>
+            <ul class="ep-scope-list">
+              <li>CVEs, priorização com IA, revisão CVSS, SCA, certificados e registro de riscos.</li>
+              <li>Threat Intel Center, feeds NVD/MSRC e banco de vulnerabilidades com ledger/cache.</li>
+              <li>Patch Management Windows e PatchMon Linux com deploy, compliance e relatórios.</li>
+              <li>VulcanRadar/NDR: DNS, conexões, SSL, top talkers, topologia, fluxos e reputação.</li>
+              <li>Postura mobile VMRF, scans de dispositivo e licenças mobile.</li>
+            </ul>
+          </article>
+
+          <article class="ep-scope-card">
+            <div class="ep-scope-head">
+              <span class="ep-scope-num">06</span>
+              <div>
+                <p class="ep-scope-kicker">Segurança contínua</p>
+                <h3>DevSecOps, Red Team, OT, compliance e relatórios</h3>
+              </div>
+            </div>
+            <p class="ep-scope-lead">Cobertura do desenvolvimento ao ambiente crítico, com evidência pronta para auditoria.</p>
+            <ul class="ep-scope-list">
+              <li>DevSecOps: Git, SAST/SCA, Security Gates, Terraform, GitHub Workflows, GPO e Docker.</li>
+              <li>Red Team/DAST: escopos, scans, relatório A–E, Vulcan Atlas e VulcanHStrike.</li>
+              <li>OT/ICS: matriz de controles, visibilidade de ativos/protocolos e planta industrial.</li>
+              <li>Compliance ISO 27001, ISMS, IAM, SoA, retenção, revisão de acessos e base de conhecimento.</li>
+              <li>Report Center com modelos executivos/auditoria, exportação PDF/planilha e dados estruturados.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="ep-scope-foot">
+          <p><strong>Operação pronta para escalar:</strong> proxy central com auditoria, fila persistente de scans, sincronizações periódicas, integrações com NVD/MSRC, VirusTotal, Cloudflare Radar, MISP, IA compatível com OpenAI, SSO, PAM e automações operacionais via Docker/scripts.</p>
+          <a class="btn btn-secondary" href="contato.html?servico=cybershield-nextgen">Receber apresentação comercial</a>
         </div>
       </div>
     </section>
 
     <section class="ep-consulting">
       <div class="container">
-        <div class="ep-section-copy"><div class="section-title-small">Além do painel</div><h2 class="ep-section-title">Consultoria para transformar sinal em plano de ação</h2><p class="ep-section-text">Apoiamos desde o diagnóstico e desenho técnico até a sustentação da operação e o acompanhamento das correções.</p></div>
+        <div class="ep-section-head">
+          <div class="ep-section-copy">
+            <div class="section-title-small">Implantação e evolução</div>
+            <h2 class="ep-section-title">Coloque a plataforma para operar no seu contexto</h2>
+            <p class="ep-section-text">Além da tecnologia, a Vulcan apoia o desenho, a implantação e a evolução do Cybershield NextGen para que a operação gere resultado real.</p>
+          </div>
+        </div>
         <div class="ep-consult-grid">
-          <article class="ep-consult-card"><h3>EDR/XDR e SIEM</h3><p>Avaliamos maturidade, lacunas de telemetria, arquitetura de coleta e aderência dos casos de uso ao risco real.</p><ul><li>Diagnóstico e roadmap de evolução</li><li>Afinação de regras, playbooks e integrações</li><li>Apoio a prova de conceito e seleção de fornecedor</li><li>Handover para SOC interno ou terceirizado</li></ul></article>
-          <article class="ep-consult-card"><h3>Plano de ação acompanhado</h3><p>Transformamos achados de ferramenta, pentest, auditoria ou incidente em uma fila priorizada com donos e critérios de conclusão.</p><ul><li>Priorização técnica e de negócio</li><li>RACI, dependências e marcos</li><li>Indicadores de avanço e steering</li><li>Replanejamento após incidentes ou auditorias</li></ul></article>
+          <article class="ep-consult-card">
+            <h3>Arquitetura e implantação</h3>
+            <p>Definimos fontes de telemetria, casos de uso, integrações e fluxos de resposta alinhados ao risco do seu ambiente.</p>
+            <ul>
+              <li>Diagnóstico de maturidade e cobertura</li>
+              <li>Desenho de arquitetura EDR/XDR + SIEM</li>
+              <li>Integração de fontes e casos de uso</li>
+              <li>Handover para SOC interno ou terceirizado</li>
+            </ul>
+          </article>
+          <article class="ep-consult-card">
+            <h3>Operação e melhoria contínua</h3>
+            <p>Acompanhamos a evolução da plataforma com ajuste de regras, playbooks e indicadores para manter a detecção relevante.</p>
+            <ul>
+              <li>Ajuste de detecções e redução de ruído</li>
+              <li>Playbooks, RACI e critérios de escalonamento</li>
+              <li>Métricas de resposta e relatórios executivos</li>
+              <li>Revisão contínua após incidentes e mudanças</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
 
     <section class="ep-cta">
-      <div class="container"><div class="ep-cta-card"><div><h2>Seu SIEM está gerando contexto ou apenas acumulando eventos?</h2><p>Conte como funciona sua operação atual. Ambientes com convergência TI/OT também podem ser atendidos pelo projeto <a href="siem-ot.html" class="cyan">Vulcan-SIEM OT</a>. Clientes com manager ativo podem <a href="business-products/vulcan-siem/" class="cyan">baixar o agente Vulcan SIEM</a>.</p></div><a class="btn btn-primary" href="contato.html">Conversar com a Vulcan</a></div></div>
+      <div class="container">
+        <div class="ep-cta-card">
+          <div>
+            <div class="section-title-small">Próximo passo</div>
+            <h2>Veja o Cybershield NextGen na sua operação.</h2>
+            <p>Agende uma conversa técnica para mapear fontes de telemetria, casos de uso e o melhor caminho para implantar EDR/XDR e SIEM com correlação contextual.</p>
+            <p class="ep-cta-links">Ambientes TI/OT podem ser atendidos com <a href="siem-ot.html" class="cyan">Vulcan-SIEM OT</a>. Clientes com manager ativo podem <a href="business-products/vulcan-siem/" class="cyan">baixar o agente Vulcan SIEM</a>.</p>
+          </div>
+          <div class="ep-cta-actions">
+            <a class="btn btn-primary" href="contato.html?servico=cybershield-nextgen">Agendar demonstração</a>
+            <a class="btn btn-secondary" href="software-vulcan-platform.html">Conhecer a plataforma</a>
+          </div>
+        </div>
+      </div>
     </section>
   <section class="section endpoint-mobile" aria-labelledby="endpoint-mobile-title">
     <div class="container">
       <div class="endpoint-mobile-grid">
         <div class="endpoint-mobile-copy">
-          <div class="section-title-small">Vulcan Mobile</div>
-          <h2 class="section-title" id="endpoint-mobile-title">Proteção que acompanha a operação em Android e iOS</h2>
-          <p class="section-text">Estenda a visibilidade do Vulcan para dispositivos móveis corporativos, com inventário, postura de segurança e telemetria conectados ao contexto do endpoint e do SIEM.</p>
+          <div class="section-title-small">Extensão da plataforma</div>
+          <h2 class="section-title" id="endpoint-mobile-title">Visibilidade móvel conectada ao Cybershield NextGen</h2>
+          <p class="section-text">Leve a telemetria de dispositivos corporativos Android e iOS para o mesmo contexto operacional do endpoint e do SIEM, com postura, inventário e sinais correlacionados.</p>
           <div class="endpoint-mobile-badges" aria-label="Plataformas compatíveis"><span>Android</span><span>iOS</span></div>
-          <div class="endpoint-mobile-actions"><a class="btn btn-primary" href="contato.html?servico=vulcan-mobile">Conhecer o Vulcan Mobile</a><a class="btn btn-secondary" href="contato.html?servico=endpoint-mobile">Falar com um especialista</a></div>
-          <p class="endpoint-mobile-note">Os recursos são definidos conforme a plataforma, as políticas da organização e o escopo contratado.</p>
+          <div class="endpoint-mobile-actions">
+            <a class="btn btn-primary" href="contato.html?servico=vulcan-mobile">Conhecer o Vulcan Mobile</a>
+            <a class="btn btn-secondary" href="contato.html?servico=cybershield-nextgen">Falar com especialista</a>
+          </div>
+          <p class="endpoint-mobile-note">Recursos disponíveis conforme plataforma, políticas da organização e escopo contratado.</p>
         </div>
-        <div class="endpoint-mobile-panel" aria-label="Capacidades do aplicativo móvel">
-          <div class="endpoint-mobile-panel-head"><span class="endpoint-mobile-status"></span><strong>Visibilidade móvel integrada</strong><small>Android · iOS</small></div>
+        <div class="endpoint-mobile-panel" aria-label="Capacidades do Vulcan Mobile">
+          <div class="endpoint-mobile-panel-head"><span class="endpoint-mobile-status"></span><strong>Telemetria móvel no contexto SIEM</strong><small>Android · iOS</small></div>
           <div class="endpoint-mobile-feature"><span>01</span><div><strong>Inventário e postura</strong><p>Visibilidade de dispositivos, versões e indicadores de conformidade.</p></div></div>
-          <div class="endpoint-mobile-feature"><span>02</span><div><strong>Telemetria no mesmo contexto</strong><p>Sinais móveis correlacionados com alertas e investigações do SOC.</p></div></div>
-          <div class="endpoint-mobile-feature"><span>03</span><div><strong>Resposta orientada por risco</strong><p>Fluxos de contenção e aprovação alinhados às políticas corporativas.</p></div></div>
+          <div class="endpoint-mobile-feature"><span>02</span><div><strong>Correlação com endpoint e SIEM</strong><p>Sinais móveis enriquecidos no mesmo fluxo de investigação e resposta.</p></div></div>
+          <div class="endpoint-mobile-feature"><span>03</span><div><strong>Resposta orientada por risco</strong><p>Ações e aprovações alinhadas às políticas corporativas e ao contexto do incidente.</p></div></div>
         </div>
       </div>
     </div>
   </section>
-  <style>
-    .endpoint-mobile{border-top:1px solid rgba(255,255,255,.08);background:radial-gradient(circle at 78% 16%,rgba(34,211,238,.11),transparent 26%),linear-gradient(180deg,rgba(2,8,23,.15),rgba(4,21,49,.34))}.endpoint-mobile-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(28px,6vw,76px);align-items:center}.endpoint-mobile-copy .section-title{max-width:700px}.endpoint-mobile-copy .section-text{max-width:650px}.endpoint-mobile-badges{display:flex;gap:9px;margin:22px 0}.endpoint-mobile-badges span{padding:7px 11px;border:1px solid rgba(103,232,249,.28);border-radius:999px;background:rgba(34,211,238,.08);color:#a5f3fc;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.endpoint-mobile-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.endpoint-mobile-note{margin:16px 0 0;color:rgba(255,255,255,.5);font-size:12px;line-height:1.55}.endpoint-mobile-panel{padding:clamp(20px,3vw,30px);border:1px solid rgba(103,232,249,.2);border-radius:22px;background:linear-gradient(145deg,rgba(6,31,64,.7),rgba(2,8,23,.85));box-shadow:0 24px 70px rgba(0,0,0,.2)}.endpoint-mobile-panel-head{display:flex;align-items:center;gap:9px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.1);font-size:13px}.endpoint-mobile-panel-head small{margin-left:auto;color:rgba(255,255,255,.48);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.endpoint-mobile-status{width:8px;height:8px;border-radius:50%;background:#67e8f9;box-shadow:0 0 12px #67e8f9}.endpoint-mobile-feature{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.08)}.endpoint-mobile-feature:last-child{border-bottom:0;padding-bottom:0}.endpoint-mobile-feature>span{color:#67e8f9;font:800 10px ui-monospace,monospace}.endpoint-mobile-feature strong{color:#fff;font-size:14px}.endpoint-mobile-feature p{margin:6px 0 0;color:rgba(255,255,255,.58);font-size:12px;line-height:1.55}@media(max-width:850px){.endpoint-mobile-grid{grid-template-columns:1fr}.endpoint-mobile-panel{max-width:700px}}@media(max-width:540px){.endpoint-mobile-actions{display:grid}.endpoint-mobile-actions .btn{text-align:center}.endpoint-mobile-panel-head{align-items:flex-start}.endpoint-mobile-panel-head small{margin-left:0}}
-  </style>
 </main>
   <footer>
   <div class="container footer-main">
